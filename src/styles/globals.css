@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-serif: 'Cormorant Garamond', 'Didot', 'Bodoni MT', 'Cinzel', Georgia, serif;
+    --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  body {
+    /* 50% Fond Blanc Cassé tendant vers l'or */
+    @apply bg-[#FAF8F5] text-[#111111] antialiased selection:bg-[#C5A880] selection:text-white;
+    font-family: var(--font-sans);
+  }
+
+  h1, h2, h3, h4, .font-serif-luxe {
+    font-family: var(--font-serif);
+  }
+}
+
+/* Luxury Smooth Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #FAF8F5;
+}
+::-webkit-scrollbar-thumb {
+  background: #D8CEBE;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #C5A880;
+}
+
+/* 6% Or Doré Highlights */
+.gold-gradient-text {
+  background: linear-gradient(135deg, #A88658 0%, #C5A880 50%, #8C6D42 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(197, 168, 128, 0.15), transparent);
+}
+
+.gold-border {
+  border-color: rgba(197, 168, 128, 0.4);
+}
+
+.gold-border-hover:hover {
+  border-color: #C5A880;
+}
