@@ -4,8 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { Menu, X, MessageCircle, ChevronRight } from 'lucide-react';
-import { generateWhatsAppLink } from '@/lib/whatsapp';
+import { Menu, X, MessageCircle, ChevronRight, ShoppingBag } from 'lucide-react';
 import { trackEvent } from '@/lib/analytics';
 
 import TopAnnouncementBar from '@/components/public/TopAnnouncementBar';
@@ -16,6 +15,7 @@ const NAV_LINKS = [
   { name: 'Collections', href: '/collections' },
   { name: 'Créations', href: '/creations' },
   { name: 'Sur mesure', href: '/sur-mesure' },
+  { name: 'Formation', href: '/formation' },
   { name: 'Lookbook', href: '/lookbook' },
   { name: 'Contact', href: '/contact' },
 ];
@@ -32,10 +32,6 @@ export default function Navbar() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const handleWhatsAppClick = () => {
-    trackEvent('whatsapp_click', { path: pathname });
-  };
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
@@ -71,14 +67,14 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-9">
+          <nav className="hidden lg:flex items-center space-x-7">
             {NAV_LINKS.map((link) => {
               const isActive = pathname === link.href;
               return (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`text-[11px] uppercase tracking-[0.26em] transition-all relative py-1 font-medium ${
+                  className={`text-[10px] uppercase tracking-[0.26em] transition-all relative py-1 font-medium ${
                     isActive
                       ? 'text-[#0E0E10] font-semibold'
                       : 'text-[#5C564E] hover:text-[#0E0E10]'
@@ -97,17 +93,14 @@ export default function Navbar() {
 
           {/* Action Button: Commander */}
           <div className="hidden sm:flex items-center space-x-4">
-            <a
-              href={generateWhatsAppLink({ type: 'general' })}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={handleWhatsAppClick}
+            <Link
+              href="/commander"
               className="flex items-center gap-2.5 px-6 py-2.5 text-[11px] uppercase tracking-[0.24em] bg-[#0E0E10] hover:bg-[#C5A880] text-[#FFFFFF] hover:text-[#0E0E10] border border-[#0E0E10] hover:border-[#C5A880] transition-all duration-400 font-semibold shadow-sm rounded-none"
-              title="Passer une commande ou échanger avec l'atelier"
+              title="Passer une commande"
             >
               <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#C5A880] group-hover:bg-[#0E0E10]" />
               <span>COMMANDER</span>
-            </a>
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -123,7 +116,7 @@ export default function Navbar() {
 
         {/* Mobile Drawer */}
         {isOpen && (
-          <div className="lg:hidden bg-[#FFFFFF] border-b border-[#E8E2D9] px-6 py-6 space-y-4 shadow-xl">
+          <div className="lg:hidden bg-[#FFFFFF] border-b border-[#E8E2D9] px-6 py-6 space-y-4 shadow-xl max-h-[85vh] overflow-y-auto">
             <nav className="flex flex-col space-y-3">
               {NAV_LINKS.map((link) => {
                 const isActive = pathname === link.href;
@@ -143,19 +136,14 @@ export default function Navbar() {
               })}
             </nav>
             <div className="pt-3">
-              <a
-                href={generateWhatsAppLink({ type: 'general' })}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => {
-                  handleWhatsAppClick();
-                  setIsOpen(false);
-                }}
+              <Link
+                href="/commander"
+                onClick={() => setIsOpen(false)}
                 className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-[#111111] text-[#FAF8F5] border border-[#C5A880] font-semibold text-xs uppercase tracking-[0.2em] rounded-sm hover:bg-[#C5A880] hover:text-black transition-colors"
               >
-                <MessageCircle className="w-4 h-4 text-[#C5A880]" />
+                <ShoppingBag className="w-4 h-4 text-[#C5A880]" />
                 <span>Commander</span>
-              </a>
+              </Link>
             </div>
           </div>
         )}

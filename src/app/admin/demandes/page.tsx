@@ -296,15 +296,35 @@ export default function AdminDemandesCRMPage() {
                   <span className="text-gray-800 font-medium">{selectedDemand.email || 'Non renseigné'}</span>
                 </div>
 
-                <div>
-                  <span className="text-gray-400 text-[10px] uppercase font-semibold block mb-0.5">Événement & Date</span>
-                  <span className="text-gray-800 font-medium">{selectedDemand.occasion || 'Non précisé'}</span>
-                </div>
+                {selectedDemand.type === 'formation' ? (
+                  <>
+                    <div className="col-span-1 sm:col-span-2">
+                      <span className="text-gray-400 text-[10px] uppercase font-semibold block mb-0.5">Durée de formation souhaitée</span>
+                      <span className="text-[#8C6D42] font-bold">{selectedDemand.trainingDuration || 'Non précisé'}</span>
+                    </div>
+                    <div className="col-span-1 sm:col-span-2">
+                      <span className="text-gray-400 text-[10px] uppercase font-semibold block mb-0.5">Motivation</span>
+                      <span className="text-gray-800 font-medium">{selectedDemand.motivation || 'Non précisé'}</span>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div>
+                      <span className="text-gray-400 text-[10px] uppercase font-semibold block mb-0.5">Événement & Date</span>
+                      <span className="text-gray-800 font-medium">{selectedDemand.occasion || 'Non précisé'}</span>
+                    </div>
 
-                <div>
-                  <span className="text-gray-400 text-[10px] uppercase font-semibold block mb-0.5">Budget Estimé</span>
-                  <span className="text-[#8C6D42] font-bold">{selectedDemand.budget || 'À définir'}</span>
-                </div>
+                    <div>
+                      <span className="text-gray-400 text-[10px] uppercase font-semibold block mb-0.5">Lieu de Livraison</span>
+                      <span className="text-gray-800 font-bold">{selectedDemand.deliveryLocation || 'À définir'}</span>
+                    </div>
+
+                    <div>
+                      <span className="text-gray-400 text-[10px] uppercase font-semibold block mb-0.5">Budget Estimé</span>
+                      <span className="text-[#8C6D42] font-bold">{selectedDemand.budget || 'À définir'}</span>
+                    </div>
+                  </>
+                )}
               </div>
 
               {/* Mensurations Details */}

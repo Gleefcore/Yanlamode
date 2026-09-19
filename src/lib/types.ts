@@ -36,7 +36,7 @@ export interface Collection {
 
 export type DemandStatus = 'Nouveau' | 'En discussion' | 'Devis / Proposition' | 'Confirmé' | 'Terminé';
 
-export type DemandType = 'creation' | 'sur-mesure' | 'contact';
+export type DemandType = 'creation' | 'sur-mesure' | 'contact' | 'formation';
 
 export interface Demand {
   id: string;
@@ -52,6 +52,9 @@ export interface Demand {
   occasion?: string;
   eventDate?: string;
   budget?: string;
+  deliveryLocation?: string;
+  trainingDuration?: string;
+  motivation?: string;
   measurements?: {
     chest?: string;
     waist?: string;

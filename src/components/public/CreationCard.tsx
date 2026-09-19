@@ -106,16 +106,14 @@ export default function CreationCard({ creation }: CreationCardProps) {
           >
             Détails
           </Link>
-          <a
-            href={orderWhatsAppUrl}
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href={`/commander?creationId=${creation.id}`}
             onClick={handleWhatsAppClick}
             className="flex-1 py-2 px-3 bg-gray-900 hover:bg-black text-white text-center rounded-xl text-xs font-semibold transition-colors flex items-center justify-center gap-1.5 shadow-xs"
           >
             <ShoppingBag className="w-3.5 h-3.5" />
             <span>Commander</span>
-          </a>
+          </Link>
         </div>
       </div>
     </div>

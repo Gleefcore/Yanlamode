@@ -133,16 +133,13 @@ export default function HomePage() {
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
 
-              <a
-                href={generateWhatsAppLink({ type: 'general' })}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => trackEvent('whatsapp_click', { path: '/' })}
+              <Link
+                href="/commander"
                 className="group inline-flex items-center gap-3 px-8 py-4 border border-white/30 text-white hover:border-[#C5A880] hover:text-[#C5A880] transition-all duration-500 text-xs uppercase tracking-[0.2em] font-semibold backdrop-blur-sm"
               >
                 <MessageCircle className="w-4 h-4" />
                 <span>Commander</span>
-              </a>
+              </Link>
             </div>
 
             {/* Bottom Info Bar */}

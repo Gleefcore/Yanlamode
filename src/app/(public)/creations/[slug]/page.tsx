@@ -302,16 +302,14 @@ export default function CreationDetailPage() {
 
           {/* Primary Action Button: COMMANDER + Wishlist (Exact VELORA Layout) */}
           <div className="flex items-center gap-3 pt-3">
-            <a
-              href={dynamicWhatsAppUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href={`/commander?creationId=${creation.id}`}
               onClick={handleOrderClick}
               className="flex-1 flex items-center justify-center gap-2.5 py-4 px-6 bg-gray-900 hover:bg-black text-white rounded-2xl font-bold text-xs uppercase tracking-wider transition-all shadow-md hover:shadow-lg hover:scale-[1.01]"
             >
               <ShoppingBag className="w-4 h-4" />
               <span>COMMANDER</span>
-            </a>
+            </Link>
 
             <button
               type="button"
