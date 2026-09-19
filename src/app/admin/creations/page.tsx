@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Creation, CreationStatus, CreationCategory, GenderCategory } from '@/lib/types';
-import { Plus, Edit2, Trash2, Star, X, Search, Sparkles, Filter, Check, Eye, MessageCircle } from 'lucide-react';
+import { Plus, Edit2, Trash2, Star, X, Search, Sparkles, Filter, Eye, MessageCircle } from 'lucide-react';
 
 const CATEGORIES: CreationCategory[] = [
   'Haute Couture',
@@ -186,89 +186,49 @@ export default function AdminCreationsPage() {
     return matchesCategory && matchesSearch;
   });
 
-  const featuredCount = creations.filter((c) => c.featured).length;
-  const totalViews = creations.reduce((acc, c) => acc + (c.viewsCount || 0), 0);
-  const totalClicks = creations.reduce((acc, c) => acc + (c.whatsappClicksCount || 0), 0);
-
   return (
-    <div className="space-y-8">
+    <div className="space-y-6 max-w-7xl mx-auto">
       {/* Header */}
-      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-white/[0.08] pb-6">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-6 rounded-2xl border border-gray-200/70 shadow-sm">
         <div>
-          <div className="flex items-center gap-2">
-            <span className="text-[10px] uppercase tracking-[0.28em] text-[#C5A880] font-semibold">
-              Inventaire & Lookbook Studio
-            </span>
-            <span className="w-1 h-1 rounded-full bg-[#C5A880]" />
-            <span className="text-[10px] font-mono text-zinc-400">
-              {creations.length} Pièces Actives
-            </span>
-          </div>
-          <h1 className="font-serif-luxe text-3xl sm:text-4xl text-white tracking-wide mt-1">
-            Catalogue Haute Couture
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900">
+            Gestion du Catalogue Haute Couture
           </h1>
-          <p className="text-xs text-zinc-400 mt-1 max-w-2xl font-light">
-            Supervisez les silhouettes du catalogue, ajustez les statuts de disponibilité et configurez la mise en avant vitrine.
+          <p className="text-xs text-gray-500 mt-1">
+            Supervisez les silhouettes, ajustez les statuts de disponibilité et configurez la vitrine.
           </p>
         </div>
 
-        <div className="flex items-center gap-3">
-          <button
-            onClick={handleOpenAdd}
-            className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#C5A880] text-black font-semibold text-xs uppercase tracking-[0.18em] rounded-sm hover:bg-[#D4AF37] shadow-lg shadow-[#C5A880]/10 transition-all hover:scale-[1.02]"
-          >
-            <Plus className="w-4 h-4" />
-            <span>Nouvelle Pièce</span>
-          </button>
-        </div>
+        <button
+          onClick={handleOpenAdd}
+          className="inline-flex items-center gap-2 px-5 py-2.5 bg-gray-900 hover:bg-black text-white font-semibold text-xs rounded-xl shadow-sm transition-all"
+        >
+          <Plus className="w-4 h-4" />
+          <span>Nouvelle Silhouette</span>
+        </button>
       </div>
 
-      {/* KPI Mini-Bar */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-        <div className="p-4 bg-[#0E0E12] border border-white/[0.08] rounded-sm space-y-1">
-          <span className="text-[10px] uppercase tracking-widest text-zinc-500 block">Total Modèles</span>
-          <p className="font-serif-luxe text-2xl text-white font-bold">{creations.length}</p>
-          <span className="text-[10px] text-zinc-400">En ligne sur le site</span>
-        </div>
-        <div className="p-4 bg-[#0E0E12] border border-white/[0.08] rounded-sm space-y-1">
-          <span className="text-[10px] uppercase tracking-widest text-[#C5A880] block">En Vedette Vitrine</span>
-          <p className="font-serif-luxe text-2xl text-[#C5A880] font-bold">{featuredCount}</p>
-          <span className="text-[10px] text-zinc-400">Affichés en page d'accueil</span>
-        </div>
-        <div className="p-4 bg-[#0E0E12] border border-white/[0.08] rounded-sm space-y-1">
-          <span className="text-[10px] uppercase tracking-widest text-zinc-500 block">Consultations Fiches</span>
-          <p className="font-serif-luxe text-2xl text-white font-bold">{totalViews.toLocaleString('fr-FR')}</p>
-          <span className="text-[10px] text-zinc-400">Vues cumulées</span>
-        </div>
-        <div className="p-4 bg-[#0E0E12] border border-white/[0.08] rounded-sm space-y-1">
-          <span className="text-[10px] uppercase tracking-widest text-emerald-400 block">Commandes Initiées</span>
-          <p className="font-serif-luxe text-2xl text-emerald-400 font-bold">{totalClicks.toLocaleString('fr-FR')}</p>
-          <span className="text-[10px] text-zinc-400">Clics vers l'Atelier</span>
-        </div>
-      </div>
-
-      {/* Filter & Search Bar */}
-      <div className="flex flex-col md:flex-row items-center justify-between gap-4 bg-[#0E0E12] p-4 border border-white/[0.08] rounded-sm">
-        {/* Category Pills */}
+      {/* Filters & Search */}
+      <div className="flex flex-col md:flex-row items-center justify-between gap-4 bg-white p-4 rounded-2xl border border-gray-200/70 shadow-sm">
         <div className="flex items-center gap-1.5 overflow-x-auto w-full md:w-auto pb-2 md:pb-0 scrollbar-none">
           <button
             onClick={() => setSelectedCategory('Toutes')}
-            className={`px-3 py-1.5 text-[11px] uppercase tracking-wider rounded-sm transition-all whitespace-nowrap ${
+            className={`px-3 py-1.5 text-xs rounded-xl font-medium transition-all whitespace-nowrap ${
               selectedCategory === 'Toutes'
-                ? 'bg-[#C5A880] text-black font-semibold shadow-sm'
-                : 'bg-white/[0.04] text-zinc-400 hover:text-white border border-white/[0.05]'
+                ? 'bg-gray-900 text-white shadow-sm'
+                : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
             }`}
           >
-            Toutes
+            Toutes ({creations.length})
           </button>
           {CATEGORIES.map((cat) => (
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`px-3 py-1.5 text-[11px] uppercase tracking-wider rounded-sm transition-all whitespace-nowrap ${
+              className={`px-3 py-1.5 text-xs rounded-xl font-medium transition-all whitespace-nowrap ${
                 selectedCategory === cat
-                  ? 'bg-[#C5A880] text-black font-semibold shadow-sm'
-                  : 'bg-white/[0.04] text-zinc-400 hover:text-white border border-white/[0.05]'
+                  ? 'bg-gray-900 text-white shadow-sm'
+                  : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
               }`}
             >
               {cat}
@@ -276,103 +236,94 @@ export default function AdminCreationsPage() {
           ))}
         </div>
 
-        {/* Search Field */}
         <div className="relative w-full md:w-72">
-          <Search className="w-3.5 h-3.5 text-zinc-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
+          <Search className="w-3.5 h-3.5 text-gray-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
           <input
             type="text"
-            placeholder="Rechercher par nom, réf, matière..."
+            placeholder="Rechercher nom, réf, matière..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full pl-9 pr-4 py-2 bg-white/[0.04] border border-white/[0.08] rounded-sm text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-[#C5A880] transition-colors"
+            className="w-full pl-9 pr-4 py-2 bg-gray-50 border border-gray-200 rounded-xl text-xs text-gray-800 placeholder-gray-400 focus:outline-none focus:bg-white focus:border-gray-900"
           />
         </div>
       </div>
 
-      {/* Creations Table */}
-      <div className="bg-[#0E0E12] border border-white/[0.08] rounded-sm overflow-hidden shadow-2xl">
+      {/* Table */}
+      <div className="bg-white rounded-2xl border border-gray-200/70 shadow-sm overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
-            <thead className="bg-white/[0.02] border-b border-white/[0.08] text-zinc-400 uppercase text-[10px] tracking-[0.2em]">
+            <thead className="bg-gray-50/70 border-b border-gray-100 text-gray-500 uppercase text-[10px] tracking-wider">
               <tr>
-                <th className="py-3.5 px-4 font-normal">Modèle Haute Couture</th>
-                <th className="py-3.5 px-4 font-normal">Ligne & Silhouette</th>
-                <th className="py-3.5 px-4 font-normal">Disponibilité</th>
-                <th className="py-3.5 px-4 text-center font-normal">Vitrine</th>
-                <th className="py-3.5 px-4 text-center font-normal">Engagement</th>
-                <th className="py-3.5 px-4 text-right font-normal">Actions</th>
+                <th className="py-3.5 px-5 font-semibold">Modèle Haute Couture</th>
+                <th className="py-3.5 px-4 font-semibold">Catégorie</th>
+                <th className="py-3.5 px-4 font-semibold">Statut</th>
+                <th className="py-3.5 px-4 text-center font-semibold">Vitrine</th>
+                <th className="py-3.5 px-4 text-center font-semibold">Engagement</th>
+                <th className="py-3.5 px-5 text-right font-semibold">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-white/[0.05]">
+            <tbody className="divide-y divide-gray-100">
               {loading ? (
                 <tr>
-                  <td colSpan={6} className="py-16 text-center text-xs text-zinc-500">
-                    Chargement du catalogue haute couture...
+                  <td colSpan={6} className="py-12 text-center text-gray-400">
+                    Chargement du catalogue...
                   </td>
                 </tr>
               ) : filtered.length === 0 ? (
                 <tr>
-                  <td colSpan={6} className="py-16 text-center text-xs text-zinc-500">
-                    Aucune silhouette trouvée pour cette sélection.
+                  <td colSpan={6} className="py-12 text-center text-gray-400">
+                    Aucune silhouette trouvée.
                   </td>
                 </tr>
               ) : (
                 filtered.map((c) => (
-                  <tr key={c.id} className="hover:bg-white/[0.02] transition-colors group">
-                    {/* Photo & Title */}
-                    <td className="py-3.5 px-4">
+                  <tr key={c.id} className="hover:bg-gray-50/60 transition-colors">
+                    <td className="py-3.5 px-5">
                       <div className="flex items-center gap-3.5">
-                        <div className="relative w-12 h-16 rounded-sm overflow-hidden bg-black shrink-0 border border-white/[0.1] shadow-sm">
-                          <Image src={c.images[0]} alt={c.title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                        <div className="relative w-12 h-16 rounded-xl overflow-hidden bg-gray-100 shrink-0 border border-gray-200">
+                          <Image src={c.images[0]} alt={c.title} fill className="object-cover" />
                         </div>
-                        <div className="space-y-0.5">
-                          <p className="text-white font-medium text-xs group-hover:text-[#C5A880] transition-colors">
-                            {c.title}
-                          </p>
-                          <p className="text-[#C5A880] text-[10px] font-mono tracking-wider">
-                            {c.ref}
-                          </p>
-                          <p className="text-zinc-500 text-[10px] truncate max-w-xs font-light">
-                            {c.fabric || 'Tissus nobles sélectionnés'}
-                          </p>
+                        <div>
+                          <p className="font-semibold text-gray-900 line-clamp-1">{c.title}</p>
+                          <p className="text-[#B48C56] text-[11px] font-mono mt-0.5">{c.ref}</p>
+                          <p className="text-gray-400 text-[10px] truncate max-w-xs">{c.fabric}</p>
                         </div>
                       </div>
                     </td>
 
-                    {/* Category & Gender */}
                     <td className="py-3.5 px-4">
-                      <span className="block text-zinc-200 font-medium text-xs">{c.category}</span>
-                      <span className="text-[10px] uppercase tracking-wider text-zinc-500">{c.gender}</span>
+                      <span className="font-medium text-gray-800">{c.category}</span>
+                      <span className="text-[10px] text-gray-400 block">{c.gender}</span>
                     </td>
 
-                    {/* Status */}
                     <td className="py-3.5 px-4">
-                      <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-sm text-[10px] uppercase tracking-wider border ${
-                        c.status === 'Disponible sur commande'
-                          ? 'border-emerald-500/30 text-emerald-400 bg-emerald-950/20'
-                          : c.status === 'Création sur mesure'
-                          ? 'border-[#C5A880]/30 text-[#C5A880] bg-[#C5A880]/10'
-                          : 'border-zinc-700/50 text-zinc-400 bg-zinc-900/30'
-                      }`}>
+                      <span
+                        className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-semibold border ${
+                          c.status === 'Disponible sur commande'
+                            ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
+                            : c.status === 'Création sur mesure'
+                            ? 'bg-amber-50 text-amber-700 border-amber-200'
+                            : 'bg-gray-100 text-gray-600 border-gray-200'
+                        }`}
+                      >
                         <span className={`w-1.5 h-1.5 rounded-full ${
                           c.status === 'Disponible sur commande'
-                            ? 'bg-emerald-400'
+                            ? 'bg-emerald-500'
                             : c.status === 'Création sur mesure'
-                            ? 'bg-[#C5A880]'
-                            : 'bg-zinc-500'
+                            ? 'bg-amber-500'
+                            : 'bg-gray-400'
                         }`} />
                         <span>{c.status}</span>
                       </span>
                     </td>
 
-                    {/* Featured toggle */}
                     <td className="py-3.5 px-4 text-center">
                       <button
                         onClick={() => handleToggleFeatured(c)}
-                        className={`p-1.5 rounded-sm transition-all ${
+                        className={`p-1.5 rounded-lg transition-all ${
                           c.featured
-                            ? 'text-[#C5A880] bg-[#C5A880]/15 ring-1 ring-[#C5A880]/30 shadow-sm'
-                            : 'text-zinc-600 hover:text-zinc-300 hover:bg-white/[0.05]'
+                            ? 'text-amber-500 bg-amber-50'
+                            : 'text-gray-300 hover:text-gray-600'
                         }`}
                         title={c.featured ? 'Retirer de la vitrine' : 'Mettre en vedette'}
                       >
@@ -380,33 +331,31 @@ export default function AdminCreationsPage() {
                       </button>
                     </td>
 
-                    {/* Views & Orders */}
                     <td className="py-3.5 px-4 text-center">
-                      <div className="flex items-center justify-center gap-3 text-zinc-400 text-[11px] font-mono">
-                        <span className="flex items-center gap-1" title="Vues">
-                          <Eye className="w-3 h-3 text-zinc-500" />
+                      <div className="flex items-center justify-center gap-3 text-xs text-gray-500 font-mono">
+                        <span className="flex items-center gap-1">
+                          <Eye className="w-3.5 h-3.5 text-gray-400" />
                           {c.viewsCount || 0}
                         </span>
-                        <span className="flex items-center gap-1 text-[#C5A880]" title="Commandes WhatsApp">
-                          <MessageCircle className="w-3 h-3" />
+                        <span className="flex items-center gap-1 text-emerald-600 font-semibold">
+                          <MessageCircle className="w-3.5 h-3.5" />
                           {c.whatsappClicksCount || 0}
                         </span>
                       </div>
                     </td>
 
-                    {/* Actions */}
-                    <td className="py-3.5 px-4 text-right">
-                      <div className="inline-flex items-center gap-2">
+                    <td className="py-3.5 px-5 text-right">
+                      <div className="inline-flex items-center gap-1.5">
                         <button
                           onClick={() => handleOpenEdit(c)}
-                          className="p-1.5 text-zinc-400 hover:text-[#C5A880] hover:bg-white/[0.05] rounded-sm transition-colors"
+                          className="p-1.5 text-gray-500 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
                           title="Modifier"
                         >
                           <Edit2 className="w-3.5 h-3.5" />
                         </button>
                         <button
                           onClick={() => handleDelete(c.id, c.title)}
-                          className="p-1.5 text-red-400 hover:text-red-300 hover:bg-red-950/30 rounded-sm transition-colors"
+                          className="p-1.5 text-red-500 hover:text-red-700 hover:bg-red-50 rounded-lg transition-colors"
                           title="Supprimer"
                         >
                           <Trash2 className="w-3.5 h-3.5" />
@@ -421,22 +370,22 @@ export default function AdminCreationsPage() {
         </div>
       </div>
 
-      {/* Add / Edit Modal */}
+      {/* Modal in White Knowvio Style */}
       {modalOpen && (
-        <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
-          <div className="bg-[#0E0E12] border border-white/[0.1] rounded-sm max-w-2xl w-full p-6 sm:p-8 space-y-6 my-8 max-h-[90vh] overflow-y-auto shadow-2xl">
-            <div className="flex items-center justify-between border-b border-white/[0.08] pb-4">
+        <div className="fixed inset-0 z-50 bg-black/40 backdrop-blur-xs flex items-center justify-center p-4 overflow-y-auto">
+          <div className="bg-white rounded-2xl border border-gray-200 max-w-2xl w-full p-6 sm:p-8 space-y-6 my-8 max-h-[90vh] overflow-y-auto shadow-2xl">
+            <div className="flex items-center justify-between border-b border-gray-100 pb-4">
               <div>
-                <span className="text-[10px] uppercase tracking-[0.25em] text-[#C5A880] font-semibold">
-                  Fiche Technique Atelier
+                <span className="text-[10px] uppercase font-bold text-[#B48C56] tracking-wider block">
+                  Éditeur de Silhouette
                 </span>
-                <h3 className="font-serif-luxe text-2xl text-white mt-1">
+                <h3 className="text-xl font-bold text-gray-900 mt-0.5">
                   {editingId ? 'Modifier la Silhouette' : 'Créer une Nouvelle Silhouette'}
                 </h3>
               </div>
               <button
                 onClick={() => setModalOpen(false)}
-                className="p-2 text-zinc-400 hover:text-white rounded-sm hover:bg-white/[0.05] transition-colors"
+                className="p-2 text-gray-400 hover:text-gray-700 hover:bg-gray-100 rounded-xl"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -445,25 +394,25 @@ export default function AdminCreationsPage() {
             <form onSubmit={handleSave} className="space-y-4 text-xs">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-zinc-400 mb-1 font-medium">Nom du modèle *</label>
+                  <label className="block text-gray-700 mb-1 font-semibold">Nom du modèle *</label>
                   <input
                     type="text"
                     required
                     value={form.title}
                     onChange={(e) => setForm({ ...form, title: e.target.value })}
-                    className="w-full px-3 py-2 bg-white/[0.04] border border-white/[0.08] rounded-sm text-white focus:border-[#C5A880] focus:outline-none transition-colors"
+                    className="w-full px-3.5 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 focus:bg-white focus:border-gray-900 focus:outline-none"
                     placeholder="Ex : Smoking Col Châle Soie Impériale"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-zinc-400 mb-1 font-medium">Référence Unique *</label>
+                  <label className="block text-gray-700 mb-1 font-semibold">Référence Unique *</label>
                   <input
                     type="text"
                     required
                     value={form.ref}
                     onChange={(e) => setForm({ ...form, ref: e.target.value })}
-                    className="w-full px-3 py-2 bg-white/[0.04] border border-white/[0.08] rounded-sm text-white focus:border-[#C5A880] focus:outline-none font-mono"
+                    className="w-full px-3.5 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 focus:bg-white focus:border-gray-900 focus:outline-none font-mono"
                     placeholder="YM-HC-101"
                   />
                 </div>
@@ -471,11 +420,11 @@ export default function AdminCreationsPage() {
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div>
-                  <label className="block text-zinc-400 mb-1 font-medium">Catégorie</label>
+                  <label className="block text-gray-700 mb-1 font-semibold">Catégorie</label>
                   <select
                     value={form.category}
                     onChange={(e) => setForm({ ...form, category: e.target.value as any })}
-                    className="w-full px-3 py-2 bg-[#141418] border border-white/[0.08] rounded-sm text-white focus:border-[#C5A880] focus:outline-none"
+                    className="w-full px-3.5 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 focus:bg-white focus:border-gray-900 focus:outline-none"
                   >
                     {CATEGORIES.map((cat) => (
                       <option key={cat} value={cat}>{cat}</option>
@@ -484,11 +433,11 @@ export default function AdminCreationsPage() {
                 </div>
 
                 <div>
-                  <label className="block text-zinc-400 mb-1 font-medium">Genre</label>
+                  <label className="block text-gray-700 mb-1 font-semibold">Genre</label>
                   <select
                     value={form.gender}
                     onChange={(e) => setForm({ ...form, gender: e.target.value as any })}
-                    className="w-full px-3 py-2 bg-[#141418] border border-white/[0.08] rounded-sm text-white focus:border-[#C5A880] focus:outline-none"
+                    className="w-full px-3.5 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 focus:bg-white focus:border-gray-900 focus:outline-none"
                   >
                     <option value="Homme">Homme</option>
                     <option value="Femme">Femme</option>
@@ -497,11 +446,11 @@ export default function AdminCreationsPage() {
                 </div>
 
                 <div>
-                  <label className="block text-zinc-400 mb-1 font-medium">Statut Commercial</label>
+                  <label className="block text-gray-700 mb-1 font-semibold">Statut Commercial</label>
                   <select
                     value={form.status}
                     onChange={(e) => setForm({ ...form, status: e.target.value as any })}
-                    className="w-full px-3 py-2 bg-[#141418] border border-white/[0.08] rounded-sm text-white focus:border-[#C5A880] focus:outline-none"
+                    className="w-full px-3.5 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 focus:bg-white focus:border-gray-900 focus:outline-none"
                   >
                     {STATUSES.map((st) => (
                       <option key={st} value={st}>{st}</option>
@@ -512,34 +461,34 @@ export default function AdminCreationsPage() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-zinc-400 mb-1 font-medium">Matières & Étoffes Nobles</label>
+                  <label className="block text-gray-700 mb-1 font-semibold">Matières & Étoffes Nobles</label>
                   <input
                     type="text"
                     value={form.fabric}
                     onChange={(e) => setForm({ ...form, fabric: e.target.value })}
-                    className="w-full px-3 py-2 bg-white/[0.04] border border-white/[0.08] rounded-sm text-white focus:border-[#C5A880] focus:outline-none"
-                    placeholder="Drap de laine superfine 150s, soie naturelle..."
+                    className="w-full px-3.5 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 focus:bg-white focus:border-gray-900 focus:outline-none"
+                    placeholder="Drap de laine superfine 150s, satin..."
                   />
                 </div>
 
                 <div>
-                  <label className="block text-zinc-400 mb-1 font-medium">Nuances & Couleurs</label>
+                  <label className="block text-gray-700 mb-1 font-semibold">Nuances & Couleurs</label>
                   <input
                     type="text"
                     value={form.colors}
                     onChange={(e) => setForm({ ...form, colors: e.target.value })}
-                    className="w-full px-3 py-2 bg-white/[0.04] border border-white/[0.08] rounded-sm text-white focus:border-[#C5A880] focus:outline-none"
+                    className="w-full px-3.5 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 focus:bg-white focus:border-gray-900 focus:outline-none"
                     placeholder="Noir Profond, Or Impérial"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-zinc-400 mb-1 font-medium">Sélection Visuel Haute Couture</label>
+                <label className="block text-gray-700 mb-1 font-semibold">Visuel Sélectionné</label>
                 <select
                   value={form.image}
                   onChange={(e) => setForm({ ...form, image: e.target.value })}
-                  className="w-full px-3 py-2 bg-[#141418] border border-white/[0.08] rounded-sm text-white focus:border-[#C5A880] focus:outline-none"
+                  className="w-full px-3.5 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 focus:bg-white focus:border-gray-900 focus:outline-none"
                 >
                   <option value="/images/creations/smoking-noir-prestige.jpg">Smoking Noir Prestige (Broderies Or)</option>
                   <option value="/images/creations/costume-croise-rose.jpg">Costume Croisé Rose Poudré</option>
@@ -555,40 +504,40 @@ export default function AdminCreationsPage() {
               </div>
 
               <div>
-                <label className="block text-zinc-400 mb-1 font-medium">Description Éditoriale de la Pièce</label>
+                <label className="block text-gray-700 mb-1 font-semibold">Description Éditoriale</label>
                 <textarea
                   rows={3}
                   value={form.description}
                   onChange={(e) => setForm({ ...form, description: e.target.value })}
-                  className="w-full px-3 py-2 bg-white/[0.04] border border-white/[0.08] rounded-sm text-white focus:border-[#C5A880] focus:outline-none leading-relaxed"
+                  className="w-full px-3.5 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 focus:bg-white focus:border-gray-900 focus:outline-none leading-relaxed"
                   placeholder="Détaillez la coupe, le tombé, les finitions et la silhouette..."
                 />
               </div>
 
-              <div className="flex items-center gap-2 pt-2">
+              <div className="flex items-center gap-2 pt-1">
                 <input
                   type="checkbox"
                   id="featured"
                   checked={form.featured}
                   onChange={(e) => setForm({ ...form, featured: e.target.checked })}
-                  className="rounded border-white/[0.2] bg-white/[0.05] text-[#C5A880] focus:ring-0"
+                  className="rounded border-gray-300 text-gray-900 focus:ring-0"
                 />
-                <label htmlFor="featured" className="text-zinc-300 cursor-pointer font-medium">
+                <label htmlFor="featured" className="text-gray-700 font-medium cursor-pointer">
                   Mettre en vedette dans la vitrine principale
                 </label>
               </div>
 
-              <div className="flex justify-end gap-3 pt-4 border-t border-white/[0.08]">
+              <div className="flex justify-end gap-2.5 pt-4 border-t border-gray-100">
                 <button
                   type="button"
                   onClick={() => setModalOpen(false)}
-                  className="px-4 py-2 border border-white/[0.1] text-zinc-400 hover:text-white rounded-sm hover:bg-white/[0.05] transition-colors"
+                  className="px-4 py-2 border border-gray-200 text-gray-600 hover:bg-gray-50 rounded-xl font-medium"
                 >
                   Annuler
                 </button>
                 <button
                   type="submit"
-                  className="px-6 py-2 bg-[#C5A880] text-black font-semibold uppercase tracking-wider rounded-sm hover:bg-[#D4AF37] transition-all shadow-md shadow-[#C5A880]/15"
+                  className="px-6 py-2 bg-gray-900 hover:bg-black text-white rounded-xl font-semibold transition-all shadow-sm"
                 >
                   Enregistrer
                 </button>

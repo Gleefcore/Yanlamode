@@ -32,6 +32,9 @@ export async function trackEvent(
     creationTitle?: string;
     path?: string;
     destination?: string;
+    color?: string;
+    size?: string;
+    [key: string]: any;
   }
 ) {
   try {

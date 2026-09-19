@@ -41,3 +41,4 @@ Thumbs.db
 
 # Raw image staging files in root (already organized in /public/images)
 WhatsApp Image *.jpeg
+.env*
