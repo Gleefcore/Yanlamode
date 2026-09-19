@@ -442,7 +442,7 @@ export default function SurMesurePage() {
 
             <div className="pt-4">
               <a
-                href={whatsappLink || 'https://wa.me/237691870000'}
+                href={whatsappLink || 'https://wa.me/237697251425'}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-3 px-9 py-4 bg-[#0E0E10] text-[#FFFFFF] hover:bg-[#C5A880] hover:text-[#0E0E10] border border-[#0E0E10] hover:border-[#C5A880] font-semibold text-xs uppercase tracking-[0.26em] transition-all duration-400 shadow-md"

@@ -344,7 +344,7 @@ export default function CreationDetailPage() {
             <div className="flex flex-col items-center text-center gap-1.5 p-2 rounded-xl bg-gray-50">
               <ShieldCheck className="w-4 h-4 text-gray-800" />
               <span className="font-semibold text-gray-900">Atelier Privé</span>
-              <span className="text-[10px] text-gray-500">+237 6 91 87 00 00</span>
+              <span className="text-[10px] text-gray-500">+237 6 97 25 14 25</span>
             </div>
           </div>
         </div>

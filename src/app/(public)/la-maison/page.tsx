@@ -103,7 +103,7 @@ export default function LaMaisonPage() {
                 YANLAMODE Haute Couture
               </p>
               <p className="text-xs text-white/80 font-mono pt-1">
-                +237 6 91 87 00 00 · Douala, Cameroun
+                +237 6 97 25 14 25 · Douala, Cameroun
               </p>
             </div>
           </div>
@@ -228,7 +228,7 @@ export default function LaMaisonPage() {
             <span>COMMANDER & PRENDRE RENDEZ-VOUS</span>
           </a>
           <p className="text-[11px] text-[#73706B] font-mono">
-            WhatsApp : +237 6 91 87 00 00 · Standard : +237 6 97 25 14 25
+            WhatsApp : +237 6 97 25 14 25
           </p>
         </div>
       </section>

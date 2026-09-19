@@ -84,7 +84,7 @@ export default function Footer() {
               </p>
               <div className="pt-2 space-y-1">
                 <p className="text-[#C5A880] font-mono text-[11px]">
-                  WhatsApp : +237 6 91 87 00 00
+                  WhatsApp : +237 6 97 25 14 25
                 </p>
                 <p className="text-[#A39A8E] text-[10.5px] font-mono">
                   Atelier : +237 6 97 25 14 25
@@ -122,7 +122,7 @@ export default function Footer() {
                 <Facebook className="w-4 h-4" />
               </a>
               <a
-                href="https://wa.me/237691870000"
+                href="https://wa.me/237697251425"
                 target="_blank"
                 rel="noreferrer"
                 className="w-9 h-9 rounded-full border border-[#C5A880]/60 flex items-center justify-center text-[#C5A880] hover:bg-[#C5A880] hover:text-black transition-colors"

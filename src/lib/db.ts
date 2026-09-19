@@ -7,8 +7,8 @@ const INITIAL_SETTINGS: SiteSettings = {
   tagline: "L’élégance façonnée sur mesure.",
   secondaryTagline: "11 années de savoir-faire au service de créations uniques.",
   experienceYears: 11,
-  whatsappNumber: "+237691870000", // Modifiable dans le dashboard
-  phoneNumber: "+237 6 91 87 00 00 / +237 6 97 25 14 25",
+  whatsappNumber: "+237697251425", // Modifiable dans le dashboard
+  phoneNumber: "+237 6 97 25 14 25",
   email: "contact@yanlamode.com",
   address: "Atelier Haute Couture, Cameroun",
   city: "Douala / Yaoundé",
@@ -18,7 +18,7 @@ const INITIAL_SETTINGS: SiteSettings = {
     instagram: "https://instagram.com/yanlamode",
     facebook: "https://facebook.com/yanlamode",
     tiktok: "https://tiktok.com/@yanlamode",
-    whatsapp: "https://wa.me/237691870000",
+    whatsapp: "https://wa.me/237697251425",
   },
   seo: {
     metaTitle: "YANLAMODE HAUTE COUTURE | L'élégance façonnée sur mesure",
@@ -304,8 +304,8 @@ const INITIAL_DEMANDS: Demand[] = [
     id: "dem-003",
     type: "sur-mesure",
     fullName: "Emmanuel Mbarga",
-    phone: "+237 6 91 87 00 00",
-    whatsapp: "+237 6 91 87 00 00",
+    phone: "+237 6 97 25 14 25",
+    whatsapp: "+237 6 97 25 14 25",
     gender: "Homme",
     outfitType: "Agbada 3 pièces Cérémonie",
     occasion: "Dot traditionnelle",

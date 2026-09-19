@@ -24,7 +24,7 @@ export default function MentionsLegalesPage() {
           <p>
             Le site officiel <strong>YANLAMODE Haute Couture</strong> est édité par la maison de couture YANLAMODE, sous la direction de son Maître Créateur et Couturier.
           </p>
-          <p>Courriel : contact@yanlamode.com | Téléphone : +237 6 91 87 00 00 / +237 6 97 25 14 25 (Cameroun)</p>
+          <p>Courriel : contact@yanlamode.com | Téléphone : +237 6 97 25 14 25 (Cameroun)</p>
         </section>
 
         <section className="space-y-2">

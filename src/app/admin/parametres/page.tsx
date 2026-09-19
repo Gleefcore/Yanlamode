@@ -64,7 +64,7 @@ export default function AdminParametresPage() {
             Paramètres Généraux de la Maison
           </h1>
           <p className="text-xs text-gray-500 mt-1">
-            Configurez le numéro WhatsApp officiel (+237 6 91 87 00 00), les coordonnées et la signature de marque.
+            Configurez le numéro WhatsApp officiel (+237 6 97 25 14 25), les coordonnées et la signature de marque.
           </p>
         </div>
 
@@ -149,7 +149,7 @@ export default function AdminParametresPage() {
                 value={settings.whatsappNumber}
                 onChange={(e) => setSettings({ ...settings, whatsappNumber: e.target.value })}
                 className="w-full px-3.5 py-2.5 bg-emerald-50/50 border border-emerald-300 rounded-xl text-emerald-900 font-mono font-bold focus:bg-white focus:border-emerald-600 focus:outline-none"
-                placeholder="237691870000"
+                placeholder="237697251425"
               />
               <p className="text-[10px] text-gray-500 mt-1">
                 Tous les boutons « COMMANDER » du site redirigeront vers ce numéro.

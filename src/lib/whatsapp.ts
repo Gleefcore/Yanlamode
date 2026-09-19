@@ -26,8 +26,8 @@ export interface WhatsAppMessageOptions {
 }
 
 export function generateWhatsAppLink(options: WhatsAppMessageOptions): string {
-  // Numéro officiel de l'atelier Yanlamode au Cameroun (+237 6 91 87 00 00)
-  const defaultPhone = '237691870000';
+  // Numéro officiel de l'atelier Yanlamode au Cameroun (+237 6 97 25 14 25)
+  const defaultPhone = '237697251425';
   const phone = (options.phone || defaultPhone).replace(/\+/g, '').replace(/\s+/g, '');
 
   let text = '';

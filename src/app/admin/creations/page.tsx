@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Creation, CreationStatus, CreationCategory, GenderCategory } from '@/lib/types';
-import { Plus, Edit2, Trash2, Star, X, Search, Sparkles, Filter, Eye, MessageCircle } from 'lucide-react';
+import { Plus, Edit2, Trash2, Star, X, Search, Sparkles, Filter, Eye, MessageCircle, Upload } from 'lucide-react';
 
 const CATEGORIES: CreationCategory[] = [
   'Haute Couture',
@@ -31,17 +31,18 @@ export default function AdminCreationsPage() {
   // Form state
   const [form, setForm] = useState({
     title: '',
-    ref: '',
     collectionId: 'col-ceremonie',
     category: 'Haute Couture' as CreationCategory,
     gender: 'Homme' as GenderCategory,
     description: '',
     fabric: '',
-    colors: 'Noir Profond, Or Impérial',
     status: 'Disponible sur commande' as CreationStatus,
-    image: '/images/creations/smoking-noir-prestige.jpg',
+    image: '',
     featured: false,
   });
+
+  const [uploading, setUploading] = useState(false);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
 
   useEffect(() => {
     fetchCreations();
@@ -63,17 +64,16 @@ export default function AdminCreationsPage() {
     setEditingId(null);
     setForm({
       title: '',
-      ref: `YM-HC-${Math.floor(100 + Math.random() * 900)}`,
       collectionId: 'col-ceremonie',
       category: 'Haute Couture',
       gender: 'Homme',
       description: '',
       fabric: '',
-      colors: 'Noir Profond, Or Impérial',
       status: 'Disponible sur commande',
-      image: '/images/creations/smoking-noir-prestige.jpg',
+      image: '',
       featured: false,
     });
+    setImagePreview(null);
     setModalOpen(true);
   };
 
@@ -81,18 +81,45 @@ export default function AdminCreationsPage() {
     setEditingId(c.id);
     setForm({
       title: c.title,
-      ref: c.ref,
       collectionId: c.collectionId,
       category: c.category,
       gender: c.gender,
       description: c.description,
       fabric: c.fabric,
-      colors: c.colors.join(', '),
       status: c.status,
-      image: c.images[0] || '/images/creations/smoking-noir-prestige.jpg',
+      image: c.images[0] || '',
       featured: c.featured,
     });
+    setImagePreview(c.images[0] || null);
     setModalOpen(true);
+  };
+
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setUploading(true);
+    const formData = new FormData();
+    formData.append('file', file);
+
+    try {
+      const res = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData,
+      });
+      const data = await res.json();
+      if (res.ok && data.url) {
+        setForm(prev => ({ ...prev, image: data.url }));
+        setImagePreview(data.url);
+      } else {
+        alert(data.error || 'Erreur de téléchargement');
+      }
+    } catch (err) {
+      console.error(err);
+      alert('Erreur lors du téléchargement');
+    } finally {
+      setUploading(false);
+    }
   };
 
   const handleSave = async (e: React.FormEvent) => {
@@ -104,18 +131,20 @@ export default function AdminCreationsPage() {
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/(^-|-$)/g, '');
 
+    const ref = 'YM-' + Date.now();
+
     const payload = {
       title: form.title,
       slug,
-      ref: form.ref,
+      ref,
       collectionId: form.collectionId,
       category: form.category,
       gender: form.gender,
       description: form.description,
       fabric: form.fabric,
-      colors: form.colors.split(',').map((s) => s.trim()).filter(Boolean),
+      colors: [],
       status: form.status,
-      images: [form.image],
+      images: form.image ? [form.image] : [],
       featured: form.featured,
     };
 
@@ -180,7 +209,6 @@ export default function AdminCreationsPage() {
     const matchesCategory = selectedCategory === 'Toutes' || c.category === selectedCategory;
     const matchesSearch =
       c.title.toLowerCase().includes(search.toLowerCase()) ||
-      c.ref.toLowerCase().includes(search.toLowerCase()) ||
       c.category.toLowerCase().includes(search.toLowerCase()) ||
       c.fabric.toLowerCase().includes(search.toLowerCase());
     return matchesCategory && matchesSearch;
@@ -240,7 +268,7 @@ export default function AdminCreationsPage() {
           <Search className="w-3.5 h-3.5 text-gray-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
           <input
             type="text"
-            placeholder="Rechercher nom, réf, matière..."
+            placeholder="Rechercher nom, matière..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             className="w-full pl-9 pr-4 py-2 bg-gray-50 border border-gray-200 rounded-xl text-xs text-gray-800 placeholder-gray-400 focus:outline-none focus:bg-white focus:border-gray-900"
@@ -281,11 +309,10 @@ export default function AdminCreationsPage() {
                     <td className="py-3.5 px-5">
                       <div className="flex items-center gap-3.5">
                         <div className="relative w-12 h-16 rounded-xl overflow-hidden bg-gray-100 shrink-0 border border-gray-200">
-                          <Image src={c.images[0]} alt={c.title} fill className="object-cover" />
+                          <Image src={c.images[0] || '/images/placeholder.jpg'} alt={c.title} fill className="object-cover" />
                         </div>
                         <div>
                           <p className="font-semibold text-gray-900 line-clamp-1">{c.title}</p>
-                          <p className="text-[#B48C56] text-[11px] font-mono mt-0.5">{c.ref}</p>
                           <p className="text-gray-400 text-[10px] truncate max-w-xs">{c.fabric}</p>
                         </div>
                       </div>
@@ -404,18 +431,6 @@ export default function AdminCreationsPage() {
                     placeholder="Ex : Smoking Col Châle Soie Impériale"
                   />
                 </div>
-
-                <div>
-                  <label className="block text-gray-700 mb-1 font-semibold">Référence Unique *</label>
-                  <input
-                    type="text"
-                    required
-                    value={form.ref}
-                    onChange={(e) => setForm({ ...form, ref: e.target.value })}
-                    className="w-full px-3.5 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 focus:bg-white focus:border-gray-900 focus:outline-none font-mono"
-                    placeholder="YM-HC-101"
-                  />
-                </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -470,37 +485,38 @@ export default function AdminCreationsPage() {
                     placeholder="Drap de laine superfine 150s, satin..."
                   />
                 </div>
-
-                <div>
-                  <label className="block text-gray-700 mb-1 font-semibold">Nuances & Couleurs</label>
-                  <input
-                    type="text"
-                    value={form.colors}
-                    onChange={(e) => setForm({ ...form, colors: e.target.value })}
-                    className="w-full px-3.5 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 focus:bg-white focus:border-gray-900 focus:outline-none"
-                    placeholder="Noir Profond, Or Impérial"
-                  />
-                </div>
               </div>
 
               <div>
-                <label className="block text-gray-700 mb-1 font-semibold">Visuel Sélectionné</label>
-                <select
-                  value={form.image}
-                  onChange={(e) => setForm({ ...form, image: e.target.value })}
-                  className="w-full px-3.5 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 focus:bg-white focus:border-gray-900 focus:outline-none"
-                >
-                  <option value="/images/creations/smoking-noir-prestige.jpg">Smoking Noir Prestige (Broderies Or)</option>
-                  <option value="/images/creations/costume-croise-rose.jpg">Costume Croisé Rose Poudré</option>
-                  <option value="/images/creations/smoking-vert-sauge.jpg">Smoking Vert Sauge & Col Châle</option>
-                  <option value="/images/creations/agbada-noir-diamant.jpg">Agbada Noir Relief Diamant</option>
-                  <option value="/images/creations/ensemble-blanc-oiseau.jpg">Ensemble Blanc Oiseaux Brodés</option>
-                  <option value="/images/creations/costume-ceremonie-blanc-rouge.jpg">Gilet d'Apparat Blanc & Coiffe</option>
-                  <option value="/images/creations/robe-batik-franges.jpg">Robe Batik Indigo Franges</option>
-                  <option value="/images/creations/tunique-dentelle-suisse.jpg">Tunique Dentelle Suisse Ajourée</option>
-                  <option value="/images/creations/robe-maxi-batik-bronze.jpg">Robe Maxi Batik Bronze Cuivre</option>
-                  <option value="/images/creations/robe-tunique-violet-indigo.jpg">Robe Kimono Batik Violet Impérial</option>
-                </select>
+                <label className="block text-gray-700 mb-1 font-semibold">Téléverser un visuel</label>
+                <div className="relative border-2 border-dashed border-gray-200 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors group p-4 flex flex-col items-center justify-center min-h-[120px]">
+                  {imagePreview ? (
+                    <div className="relative w-24 h-32 rounded-lg overflow-hidden shadow-sm">
+                      <Image src={imagePreview} alt="Aperçu" fill className="object-cover" />
+                      <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                        <Upload className="w-5 h-5 text-white" />
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="text-center">
+                      <Upload className="w-6 h-6 text-gray-400 mx-auto mb-2" />
+                      <p className="text-gray-500 font-medium">Glissez un fichier ou cliquez</p>
+                      <p className="text-gray-400 text-[10px] mt-1">PNG, JPG, WEBP</p>
+                    </div>
+                  )}
+                  {uploading && (
+                    <div className="absolute inset-0 bg-white/60 backdrop-blur-[1px] flex items-center justify-center rounded-xl z-10">
+                      <span className="text-gray-900 font-medium bg-white px-3 py-1 rounded-full shadow-sm text-[10px]">Chargement...</span>
+                    </div>
+                  )}
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleFileUpload}
+                    disabled={uploading}
+                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-20"
+                  />
+                </div>
               </div>
 
               <div>

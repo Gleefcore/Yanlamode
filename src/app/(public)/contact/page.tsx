@@ -97,7 +97,7 @@ export default function ContactPage() {
 
             <div className="pt-2 flex items-center justify-between text-[11px] text-[#73706B] border-t border-[#F0ECE1]">
               <span>Réponse garantie sous 2h</span>
-              <span className="font-mono text-[#0E0E10]">+237 6 91 87 00 00</span>
+              <span className="font-mono text-[#0E0E10]">+237 6 97 25 14 25</span>
             </div>
           </div>
 
@@ -107,7 +107,7 @@ export default function ContactPage() {
               <Phone className="w-4 h-4 text-[#C5A880] mt-0.5 shrink-0" />
               <div className="space-y-0.5">
                 <p className="text-[#0E0E10] font-medium uppercase tracking-wider text-[11px]">Lignes Directes de l'Atelier</p>
-                <p className="text-[#666360] font-mono text-xs">+237 6 91 87 00 00 (WhatsApp Principal)</p>
+                <p className="text-[#666360] font-mono text-xs">+237 6 97 25 14 25 (WhatsApp Principal)</p>
                 <p className="text-[#666360] font-mono text-xs">+237 6 97 25 14 25 (Standard Téléphonique)</p>
               </div>
             </div>
