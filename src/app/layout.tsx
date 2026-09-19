@@ -1,5 +1,18 @@
 import type { Metadata } from 'next';
+import { Playfair_Display, Montserrat } from 'next/font/google';
 import '@/styles/globals.css';
+
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  variable: '--font-playfair',
+  display: 'swap',
+});
+
+const montserrat = Montserrat({
+  subsets: ['latin'],
+  variable: '--font-montserrat',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://yanlamode.com'),
@@ -32,8 +45,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="fr">
-      <body className="min-h-screen bg-[#0A0A0A] text-[#FBF9F5] antialiased">
+    <html lang="fr" className={`${playfair.variable} ${montserrat.variable}`}>
+      <body className="min-h-screen bg-[#FAF8F5] text-[#111111] antialiased selection:bg-[#C5A880] selection:text-white font-sans">
         {children}
       </body>
     </html>

@@ -220,33 +220,14 @@ export default function AdminLayout({
           </div>
 
           <div className="flex items-center gap-3">
-            {/* Search bar Knowvio style */}
-            <div className="relative hidden md:block w-72">
-              <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400" />
-              <input
-                type="text"
-                placeholder="Rechercher modèles, commandes..."
-                className="w-full pl-9 pr-4 py-2 bg-gray-50 border border-gray-200 rounded-xl text-xs text-gray-800 placeholder-gray-400 focus:outline-none focus:bg-white focus:border-gray-900 transition-colors"
-              />
-            </div>
-
-            {/* Notification Bell with Badge */}
-            <button
-              className="relative p-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-xl transition-colors"
-              title="Notifications"
-            >
-              <Bell className="w-4 h-4" />
-              <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-red-500" />
-            </button>
-
             {/* Public Site Link */}
             <Link
               href="/"
               target="_blank"
-              className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl text-xs font-medium transition-colors"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-[#F3EFEA] hover:bg-[#EAE4D9] text-[#8C6D42] rounded-xl text-xs sm:text-sm font-bold transition-colors"
             >
-              <span>Site Web</span>
-              <ExternalLink className="w-3.5 h-3.5" />
+              <span>Voir le Site Public</span>
+              <ExternalLink className="w-4 h-4" />
             </Link>
           </div>
         </header>
