@@ -36,9 +36,8 @@ export default function FormationPage() {
         body: JSON.stringify(payload),
       });
 
-      // Redirect to WhatsApp
       const waLink = generateWhatsAppLink({
-        type: 'contact',
+        type: 'formation',
         customDetails: {
           Sujet: 'Inscription à la Formation',
           Nom: form.fullName,

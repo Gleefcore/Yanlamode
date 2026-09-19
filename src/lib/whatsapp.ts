@@ -6,23 +6,15 @@
 
 export interface WhatsAppMessageOptions {
   phone?: string;
-  type: 'creation' | 'sur-mesure' | 'contact' | 'general';
+  type: 'creation' | 'sur-mesure' | 'contact' | 'general' | 'formation';
   creationTitle?: string;
   creationRef?: string;
   collectionName?: string;
   availability?: string;
   fabric?: string;
-  deliveryLocation?: string; // 'Partout au Cameroun' | 'Europe' | 'Canada' | string;
+  deliveryLocation?: string;
   budget?: string;
-  customDetails?: {
-    name?: string;
-    occasion?: string;
-    outfitType?: string;
-    budget?: string;
-    deliveryLocation?: string;
-    measurements?: string;
-    notes?: string;
-  };
+  customDetails?: Record<string, string | undefined>;
 }
 
 export function generateWhatsAppLink(options: WhatsAppMessageOptions): string {
@@ -44,10 +36,12 @@ export function generateWhatsAppLink(options: WhatsAppMessageOptions): string {
       const budgetInfo = options.budget
         ? `\n• Mon budget indicatif : ${options.budget}`
         : '\n• Mon budget indicatif : À convenir selon les mensurations et finitions';
+      
+      const details = options.customDetails ? Object.entries(options.customDetails).filter(([_, v]) => v).map(([k, v]) => `\n• ${k} : ${v}`).join('') : '';
 
       text = `Bonjour Yanlamode Haute Couture,\n\nJe souhaite commander la création : *${options.creationTitle || 'Modèle Haute Couture'}*${
         options.creationRef ? ` (Réf : ${options.creationRef})` : ''
-      }.${availabilityInfo}${fabricInfo}\n• Lieu de livraison souhaité : ${destination}${budgetInfo}\n\nPouvez-vous me confirmer la disponibilité ainsi que les délais de confection et d'expédition ? Merci !`;
+      }.${availabilityInfo}${fabricInfo}\n• Lieu de livraison souhaité : ${destination}${budgetInfo}${details}\n\nPouvez-vous me confirmer la disponibilité ainsi que les délais de confection et d'expédition ? Merci !`;
       break;
     }
 
@@ -65,6 +59,12 @@ export function generateWhatsAppLink(options: WhatsAppMessageOptions): string {
       text = `Bonjour Yanlamode Haute Couture,\n\n${clientName}Je souhaite passer commande pour une création sur mesure exclusive :\n• Tenue souhaitée : ${details?.outfitType || 'Tenue d’apparat'}${occasion}\n• Zone de livraison : ${destination}${budget}${
         details?.measurements ? `\n• Mensurations transmises : Oui` : ''
       }${details?.notes ? `\n• Détails du projet : ${details.notes}` : ''}\n\nJe souhaite échanger directement avec le créateur pour débuter mon projet.`;
+      break;
+    }
+
+    case 'formation': {
+      const details = options.customDetails ? Object.entries(options.customDetails).filter(([_, v]) => v).map(([k, v]) => `\n• ${k.replace(/_/g, ' ')} : ${v}`).join('') : '';
+      text = `Bonjour Yanlamode Haute Couture,\n\nJe vous contacte car je suis intéressé(e) par une formation au sein de votre académie.${details}\n\nPourriez-vous me donner plus d'informations sur les modalités d'inscription ?`;
       break;
     }
 
