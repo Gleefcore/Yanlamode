@@ -47,11 +47,11 @@ export default function CreationCard({ creation }: CreationCardProps) {
   });
 
   return (
-    <div className="group relative bg-[#FFFFFF] border border-[#E8E2D9] hover:border-[#C5A880] transition-all duration-500 rounded-sm overflow-hidden flex flex-col shadow-[0_2px_12px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgba(197,168,128,0.15)]">
+    <div className="group relative flex flex-col bg-[#FFFFFF] transition-all duration-500 overflow-hidden border border-[#E8E2D9]/60 hover:border-[#C5A880]/70 hover:shadow-[0_12px_40px_rgba(197,168,128,0.12)]">
       {/* Visual Container */}
       <Link
         href={`/creations/${creation.slug}`}
-        className="relative aspect-[3/4] w-full overflow-hidden bg-[#F5F1EA] block"
+        className="relative aspect-[3/4] w-full overflow-hidden bg-[#F5F2EB] block"
       >
         <Image
           src={creation.images[0] || '/images/creations/costume-croise-rose.jpg'}
@@ -61,65 +61,67 @@ export default function CreationCard({ creation }: CreationCardProps) {
           className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
         />
 
-        {/* Subtle Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-60 transition-opacity duration-300" />
-
-        {/* Top Badges */}
+        {/* Minimalist Floating Badges */}
         <div className="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between pointer-events-none">
-          <span className="text-[10px] uppercase tracking-widest px-2.5 py-1 bg-[#111111]/85 backdrop-blur-sm text-white font-medium rounded-sm">
+          <span className="text-[9px] uppercase tracking-[0.25em] px-2.5 py-1 bg-[#0E0E10]/90 backdrop-blur-md text-[#FFFFFF] font-medium">
             {creation.gender}
           </span>
-          {statusBadge}
+          <div className="scale-95 origin-top-right">
+            {statusBadge}
+          </div>
         </div>
 
-        {/* Hover Quick View Link */}
-        <div className="absolute bottom-4 right-4 w-9 h-9 rounded-full bg-white/95 border border-[#C5A880] flex items-center justify-center text-[#111111] opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-md">
-          <ArrowUpRight className="w-4 h-4 text-[#C5A880]" />
+        {/* Discreet Corner Arrow on Hover */}
+        <div className="absolute bottom-3.5 right-3.5 w-8 h-8 bg-[#0E0E10] text-[#C5A880] flex items-center justify-center opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 shadow-md">
+          <ArrowUpRight className="w-4 h-4" />
         </div>
       </Link>
 
-      {/* Content details (Pure White Background with Crisp Black Typography) */}
-      <div className="p-5 flex-1 flex flex-col justify-between space-y-4 bg-[#FFFFFF]">
-        <div>
-          <div className="flex items-center justify-between text-[11px] text-[#7A7571] mb-1.5 uppercase tracking-wider">
+      {/* Editorial Content Below Image */}
+      <div className="p-5 flex-1 flex flex-col justify-between space-y-3 bg-[#FFFFFF]">
+        <div className="space-y-1.5">
+          <div className="flex items-center justify-between text-[10px] text-[#8C8378] uppercase tracking-[0.2em]">
             <span>{creation.category}</span>
-            <span className="text-[#C5A880] font-mono font-medium text-[10px]">{creation.ref}</span>
+            <span className="font-mono text-[#C5A880] font-normal">{creation.ref}</span>
           </div>
 
-          <Link href={`/creations/${creation.slug}`}>
-            <h3 className="font-serif-luxe text-lg text-[#111111] group-hover:text-[#C5A880] transition-colors leading-snug line-clamp-1 font-semibold">
+          <Link href={`/creations/${creation.slug}`} className="block">
+            <h3 className="font-serif-luxe text-base sm:text-lg text-[#0E0E10] group-hover:text-[#8C6D42] transition-colors leading-snug line-clamp-1 font-semibold">
               {creation.title}
             </h3>
           </Link>
 
-          <p className="text-xs text-[#66615B] mt-2 line-clamp-2 leading-relaxed">
-            {creation.description}
-          </p>
+          {creation.fabric && (
+            <p className="text-[11px] text-[#6E675F] line-clamp-1 italic font-serif">
+              {creation.fabric}
+            </p>
+          )}
 
-          <p className="text-[10px] text-[#8C8378] mt-2 flex items-center gap-1.5 font-medium">
+          <div className="text-[9.5px] text-[#A39B8F] pt-1 flex items-center gap-1.5 tracking-wider uppercase">
             <span className="text-[#C5A880]">✦</span>
-            <span>Livraison : Cameroun • Europe • Canada</span>
-          </p>
+            <span>Cameroun · Europe · Canada</span>
+          </div>
         </div>
 
-        {/* Card Actions */}
-        <div className="pt-3 border-t border-[#F1EBE1] flex items-center gap-2">
+        {/* Direct Action Link */}
+        <div className="pt-3 border-t border-[#F2ECE4] flex items-center justify-between gap-3">
           <Link
             href={`/creations/${creation.slug}`}
-            className="flex-1 py-2 text-center text-[11px] uppercase tracking-widest text-[#111111] hover:text-white bg-transparent hover:bg-[#111111] border border-[#D5CEC4] hover:border-[#111111] rounded-sm transition-all duration-300 font-medium"
+            className="text-[10px] uppercase tracking-[0.22em] text-[#0E0E10] hover:text-[#C5A880] transition-colors font-semibold luxury-underline py-0.5"
           >
-            Détails
+            Découvrir
           </Link>
+
           <a
             href={orderWhatsAppUrl}
             target="_blank"
             rel="noopener noreferrer"
             onClick={handleWhatsAppClick}
-            className="flex items-center justify-center gap-1.5 px-3.5 py-2 bg-[#111111] hover:bg-[#C5A880] text-[#FAF8F5] hover:text-[#111111] border border-[#C5A880]/50 hover:border-[#C5A880] rounded-sm transition-all duration-300 text-[11px] font-semibold shadow-xs"
+            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-[10px] uppercase tracking-[0.2em] bg-[#0E0E10] hover:bg-[#C5A880] text-[#FFFFFF] hover:text-[#0E0E10] transition-all duration-300 font-semibold"
             title="Commander ce modèle via Yanlamode WhatsApp"
           >
-            <MessageCircle className="w-3.5 h-3.5 text-[#C5A880] group-hover:text-[#111111] fill-current" />
-            <span>Commander</span>
+            <span className="w-1.5 h-1.5 rounded-full bg-[#C5A880] group-hover:bg-[#0E0E10]" />
+            <span>COMMANDER</span>
           </a>
         </div>
       </div>

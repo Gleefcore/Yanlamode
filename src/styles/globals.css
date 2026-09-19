@@ -49,9 +49,51 @@
 }
 
 .gold-border {
-  border-color: rgba(197, 168, 128, 0.4);
+  border-color: rgba(197, 168, 128, 0.35);
 }
 
 .gold-border-hover:hover {
   border-color: #C5A880;
+}
+
+/* Minimalist Luxury Utilities */
+.hairline-border {
+  border-width: 0.5px;
+}
+
+.editorial-glass {
+  background: rgba(250, 248, 245, 0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.editorial-glass-dark {
+  background: rgba(13, 13, 15, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.hover-gold-glow {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.hover-gold-glow:hover {
+  box-shadow: 0 0 25px rgba(197, 168, 128, 0.18);
+  border-color: #C5A880;
+}
+
+.luxury-underline {
+  position: relative;
+}
+.luxury-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0%;
+  height: 1px;
+  background-color: #C5A880;
+  transition: width 0.35s ease;
+}
+.luxury-underline:hover::after {
+  width: 100%;
 }

@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Creation } from '@/lib/types';
 import GalleryModal from '@/components/public/GalleryModal';
-import { Maximize2, MessageCircle, ArrowUpRight } from 'lucide-react';
+import { Maximize2, MessageCircle, ArrowUpRight, Sparkles, Globe } from 'lucide-react';
 import { generateWhatsAppLink } from '@/lib/whatsapp';
 import { trackEvent } from '@/lib/analytics';
 
@@ -43,31 +43,40 @@ export default function LookbookPage() {
   const allImages = filtered.map((c) => c.images[0]);
 
   return (
-    <div className="pt-32 pb-24 space-y-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="pt-32 pb-24 space-y-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {/* Header */}
-      <div className="text-center space-y-3">
-        <span className="text-xs uppercase tracking-[0.3em] text-[#C5A880] font-semibold">
-          Portfolio Éditorial
-        </span>
-        <h1 className="font-serif-luxe text-4xl sm:text-6xl text-[#111111]">
+      <div className="text-center space-y-4">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FAF8F5] border border-[#E8E2D9] text-[11px] uppercase tracking-[0.28em] text-[#C5A880] font-medium">
+          <Sparkles className="w-3 h-3 text-[#C5A880]" />
+          <span>Portfolio Visuel & Défilé Privé</span>
+        </div>
+
+        <h1 className="font-serif-luxe text-4xl sm:text-6xl md:text-7xl text-[#0E0E10] tracking-tight">
           Le Lookbook YANLAMODE
         </h1>
-        <p className="text-xs sm:text-sm text-[#666666] max-w-lg mx-auto">
-          Une immersion visuelle au cœur de nos silhouettes, matières travaillées et jeux de volumes architecturaux.
+
+        <p className="text-xs sm:text-sm text-[#666360] max-w-xl mx-auto font-light leading-relaxed">
+          Une immersion visuelle au cœur de nos coupes architecturales, des drapés souples et des matières nobles sélectionnées pour nos clients d'Afrique et de la diaspora.
         </p>
+
+        {/* Global Delivery Assurance */}
+        <div className="pt-2 flex items-center justify-center gap-2 text-[11px] uppercase tracking-[0.2em] text-[#9E7A45]">
+          <Globe className="w-3.5 h-3.5" />
+          <span>Créations disponibles sur commande · Expéditions : Cameroun, Europe, Canada</span>
+        </div>
       </div>
 
-      {/* Categories */}
+      {/* Categories Pills */}
       <div className="flex items-center justify-center gap-2 overflow-x-auto pb-2 scrollbar-none">
         {LOOKBOOK_CATEGORIES.map((cat) => (
           <button
             key={cat}
             type="button"
             onClick={() => setActiveCategory(cat)}
-            className={`px-5 py-2 text-xs uppercase tracking-widest rounded-sm transition-all whitespace-nowrap ${
+            className={`px-5 py-2 text-[11px] uppercase tracking-[0.22em] rounded-sm transition-all duration-300 whitespace-nowrap ${
               activeCategory === cat
-                ? 'bg-[#111111] text-[#FAF8F5] font-semibold shadow-sm'
-                : 'bg-[#FFFFFF] text-[#555555] hover:text-[#111111] border border-[#E5DFD7]'
+                ? 'bg-[#0E0E10] text-[#FAF8F5] font-medium shadow-md'
+                : 'bg-white text-[#73706B] hover:text-[#0E0E10] border border-[#E8E2D9] hover:border-[#C5A880]'
             }`}
           >
             {cat}
@@ -76,47 +85,53 @@ export default function LookbookPage() {
       </div>
 
       {/* Editorial Masonry Grid */}
-      <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
+      <div className="columns-1 sm:columns-2 lg:columns-3 gap-8 space-y-8">
         {filtered.map((item, idx) => (
           <div
             key={item.id}
-            className="break-inside-avoid group relative rounded-sm overflow-hidden border border-[#E5DFD7] bg-[#FFFFFF] shadow-sm transition-all duration-500 hover:border-[#C5A880] hover:shadow-lg"
+            className="break-inside-avoid group relative rounded-sm overflow-hidden border border-[#E8E2D9] bg-white shadow-sm transition-all duration-700 hover:border-[#C5A880] hover:shadow-2xl"
           >
-            <div className="relative aspect-[3/4] w-full overflow-hidden">
+            <div className="relative aspect-[3/4] w-full overflow-hidden bg-[#F5F2EB]">
               <Image
                 src={item.images[0]}
                 alt={item.title}
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                className="object-cover object-center group-hover:scale-105 transition-transform duration-1000"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0E0E10]/95 via-[#0E0E10]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
 
               {/* Hover Overlay Controls */}
-              <div className="absolute inset-0 p-6 flex flex-col justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="flex justify-end">
+              <div className="absolute inset-0 p-6 flex flex-col justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-400">
+                <div className="flex justify-between items-start">
+                  <span className="text-[10px] uppercase tracking-[0.25em] text-[#C5A880] bg-black/60 px-2.5 py-1 rounded-sm border border-white/10 backdrop-blur-sm">
+                    {item.ref}
+                  </span>
                   <button
                     onClick={() => setModalIndex(idx)}
-                    className="p-2.5 bg-black/60 hover:bg-black text-white rounded-full border border-white/20 transition-colors"
-                    title="Plein écran"
+                    className="p-2.5 bg-black/70 hover:bg-black text-white rounded-full border border-white/20 transition-all hover:scale-110 shadow-lg"
+                    title="Agrandir en plein écran"
                   >
                     <Maximize2 className="w-4 h-4" />
                   </button>
                 </div>
 
                 <div className="space-y-3">
-                  <span className="text-[10px] uppercase tracking-widest text-[#C5A880] font-semibold block">
-                    {item.category} · {item.gender}
-                  </span>
-                  <h3 className="font-serif-luxe text-xl text-white font-medium">
-                    {item.title}
-                  </h3>
+                  <div>
+                    <span className="text-[10px] uppercase tracking-[0.22em] text-[#C5A880] font-semibold block">
+                      {item.category} · {item.gender}
+                    </span>
+                    <h3 className="font-serif-luxe text-xl sm:text-2xl text-white font-normal mt-0.5">
+                      {item.title}
+                    </h3>
+                  </div>
+
                   <div className="flex items-center gap-2 pt-1">
                     <Link
                       href={`/creations/${item.slug}`}
-                      className="flex-1 text-center py-2 bg-white text-black text-[10px] uppercase tracking-widest font-semibold rounded-sm hover:bg-[#C5A880] hover:text-white transition-colors"
+                      className="flex-1 text-center py-2.5 bg-white text-black text-[10px] uppercase tracking-[0.2em] font-semibold rounded-sm hover:bg-[#C5A880] hover:text-black transition-all"
                     >
-                      Voir le modèle
+                      Voir Silhouette
                     </Link>
                     <a
                       href={generateWhatsAppLink({
@@ -128,11 +143,11 @@ export default function LookbookPage() {
                       })}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="px-3 py-2 bg-[#111111] hover:bg-[#C5A880] text-[#FAF8F5] hover:text-[#111111] text-[10px] uppercase tracking-widest font-semibold rounded-sm transition-colors flex items-center gap-1.5 border border-[#C5A880]/40"
+                      className="px-3.5 py-2.5 bg-[#0E0E10] hover:bg-[#C5A880] text-white hover:text-black text-[10px] uppercase tracking-[0.2em] font-semibold rounded-sm transition-all flex items-center gap-1.5 border border-[#C5A880]/50"
                       title="Commander ce modèle"
                     >
-                      <MessageCircle className="w-3.5 h-3.5 text-[#C5A880]" />
-                      <span>Commander</span>
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#C5A880]" />
+                      <span>COMMANDER</span>
                     </a>
                   </div>
                 </div>

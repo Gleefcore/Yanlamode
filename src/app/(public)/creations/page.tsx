@@ -56,31 +56,31 @@ export default function CreationsCatalogPage() {
     <div className="pt-32 pb-24 space-y-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {/* Title section */}
       <div className="text-center space-y-3">
-        <span className="text-xs uppercase tracking-[0.3em] text-[#C5A880] font-semibold">
+        <span className="text-[11px] uppercase tracking-[0.32em] text-[#C5A880] font-semibold">
           Catalogue Général &amp; Commandes
         </span>
-        <h1 className="font-serif-luxe text-4xl sm:text-6xl text-[#111111]">
+        <h1 className="font-serif-luxe text-4xl sm:text-6xl text-[#0E0E10] font-normal">
           Nos Créations d'Exception
         </h1>
-        <p className="text-xs sm:text-sm text-[#666666] max-w-lg mx-auto">
-          Silhouettes haute couture, costumes et tenues d'apparat. <strong>Livraison partout au Cameroun, en Europe et au Canada</strong>.
+        <p className="text-xs sm:text-sm text-[#666158] max-w-lg mx-auto font-light leading-relaxed">
+          Silhouettes haute couture, costumes et tenues d'apparat. <span className="font-medium text-[#0E0E10]">Livraison partout au Cameroun, en Europe et au Canada</span>.
         </p>
       </div>
 
       {/* Filter and Search Bar */}
-      <div className="space-y-6 bg-[#FFFFFF] border border-[#E5DFD7] shadow-sm p-6 rounded-sm">
+      <div className="space-y-4 bg-[#FFFFFF] border border-[#E8E2D9] p-6 shadow-sm">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           {/* Category Tabs */}
-          <div className="flex items-center gap-2 overflow-x-auto w-full md:w-auto pb-2 md:pb-0 scrollbar-none">
+          <div className="flex items-center gap-1.5 overflow-x-auto w-full md:w-auto pb-1 md:pb-0 scrollbar-none">
             {CATEGORIES.map((cat) => (
               <button
                 key={cat}
                 type="button"
                 onClick={() => setActiveCategory(cat)}
-                className={`px-4 py-2 text-xs uppercase tracking-wider rounded-sm transition-all whitespace-nowrap ${
+                className={`px-4 py-2 text-[10.5px] uppercase tracking-[0.2em] transition-all whitespace-nowrap font-medium ${
                   activeCategory === cat
-                    ? 'bg-[#111111] text-[#FAF8F5] font-semibold shadow-sm'
-                    : 'bg-[#FAF8F5] text-[#555555] hover:text-[#111111] border border-[#E5DFD7]'
+                    ? 'bg-[#0E0E10] text-[#FFFFFF] shadow-xs'
+                    : 'bg-[#FAF8F5] text-[#555047] hover:text-[#0E0E10] border border-[#E8E2D9]'
                 }`}
               >
                 {cat}
@@ -90,45 +90,45 @@ export default function CreationsCatalogPage() {
 
           {/* Search Box */}
           <div className="relative w-full md:w-72">
-            <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-[#888888]" />
+            <Search className="w-3.5 h-3.5 absolute left-3.5 top-1/2 -translate-y-1/2 text-[#888888]" />
             <input
               type="text"
               placeholder="Rechercher (tissu, modèle, réf)..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 bg-[#FAF8F5] border border-[#E5DFD7] rounded-sm text-xs text-[#111111] placeholder-[#888888] focus:outline-none focus:border-[#C5A880] transition-colors"
+              className="w-full pl-9 pr-4 py-2 bg-[#FAF8F5] border border-[#E8E2D9] text-xs text-[#0E0E10] placeholder-[#888888] focus:outline-none focus:border-[#C5A880] transition-colors"
             />
           </div>
         </div>
       </div>
 
       {/* Results Count & Delivery Info */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs text-[#777777] px-2">
-        <div className="flex items-center gap-2">
-          <span>{filtered.length} création(s) trouvée(s)</span>
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs text-[#7A746B] px-1">
+        <div className="flex items-center gap-2 text-[11px] tracking-wider uppercase">
+          <span>{filtered.length} création(s)</span>
           {activeCategory !== 'Toutes' && (
-            <span className="text-[#9E7A45] font-semibold">• Filtre : {activeCategory}</span>
+            <span className="text-[#8C6D42] font-medium">• {activeCategory}</span>
           )}
         </div>
-        <span className="text-[#8C6D42] text-[11px] font-medium">
-          ✦ Expéditions assurées partout au Cameroun, en Europe et au Canada
+        <span className="text-[#8C6D42] text-[10.5px] tracking-wider uppercase font-medium">
+          ✦ Expéditions sécurisées au Cameroun · Europe · Canada
         </span>
       </div>
 
       {/* Creations Grid */}
       {loading ? (
-        <div className="py-24 text-center text-xs text-[#777777]">
-          Chargement des modèles...
+        <div className="py-24 text-center text-xs uppercase tracking-widest text-[#777777]">
+          Présentation des créations en cours...
         </div>
       ) : filtered.length === 0 ? (
-        <div className="py-24 text-center space-y-4">
-          <p className="text-sm text-[#777777]">Aucune création ne correspond à vos critères.</p>
+        <div className="py-24 text-center space-y-4 bg-[#FFFFFF] border border-[#E8E2D9] p-8">
+          <p className="text-xs uppercase tracking-wider text-[#777777]">Aucune création ne correspond à vos critères.</p>
           <button
             onClick={() => {
               setActiveCategory('Toutes');
               setSearchQuery('');
             }}
-            className="px-6 py-2.5 bg-[#FFFFFF] border border-[#C5A880] text-xs text-[#9E7A45] uppercase tracking-wider rounded-sm hover:bg-[#C5A880] hover:text-white transition-colors"
+            className="px-6 py-2.5 bg-[#0E0E10] text-xs text-[#FFFFFF] uppercase tracking-[0.2em] hover:bg-[#C5A880] hover:text-[#0E0E10] transition-colors font-medium"
           >
             Réinitialiser les filtres
           </button>

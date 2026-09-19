@@ -2,130 +2,142 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { Award, Scissors, Sparkles, CheckCircle2, MessageCircle, Ruler, Layers, Eye, HeartHandshake } from 'lucide-react';
+import { Award, Scissors, Sparkles, CheckCircle2, MessageCircle, Ruler, Layers, Eye, HeartHandshake, Globe, Compass, ShieldCheck } from 'lucide-react';
 import { generateWhatsAppLink } from '@/lib/whatsapp';
 import { trackEvent } from '@/lib/analytics';
 
 const STEPS = [
   {
     num: '01',
-    title: 'Conception & Silhouette',
-    desc: 'Échange intime autour de votre personnalité, de votre morphologie et de l’événement pour définir l’esquisse parfaite.',
+    title: 'Consultation & Esquisse',
+    desc: 'Entretien privé autour de votre morphologie, de la solennité de l’événement et de votre posture pour esquisser les lignes directrices.',
     icon: Eye,
   },
   {
     num: '02',
-    title: 'Choix des Matières Nobles',
-    desc: 'Sélection des plus beaux draps de laine italiens, soies naturelles, dentelles suisses ajourées et batiks artisanaux exclusifs.',
+    title: 'Sélection des Tissus d’Exception',
+    desc: 'Laines superfines italiennes 150s, soies pures, velours de coton lourd, dentelles suisses et batiks artisanaux teints à la main.',
     icon: Layers,
   },
   {
     num: '03',
-    title: 'Coupe & Patronage Artisanal',
-    desc: 'Tracé millimétré à la craie et découpe manuelle des pièces pour assurer un tombé impeccable.',
+    title: 'Patronage & Découpe d’Atelier',
+    desc: 'Tracé architectural millimétré à la craie et découpe manuelle des pièces pour assurer une chute noble et fluide.',
     icon: Scissors,
   },
   {
     num: '04',
-    title: 'Assemblage & Bâtissage',
-    desc: 'Montage traditionnel à points souples pour conférer au vêtement sa structure et son maintien naturel.',
+    title: 'Entoilage & Montage Artisanal',
+    desc: 'Assemblage traditionnel à plastron flottant conférant au veston sa tenue majestueuse et sa souplesse incomparable.',
     icon: Ruler,
   },
   {
     num: '05',
     title: 'Ajustement & Essayage Privé',
-    desc: 'Retouches sur le corps du client pour épouser chaque courbe avec aisance et prestance.',
+    desc: 'Séances de retouches méticuleuses au millimètre près en salon d’essayage pour sculpter l’allure sans contraindre le confort.',
     icon: Sparkles,
   },
   {
     num: '06',
-    title: 'Finitions de Haute Précision',
-    desc: 'Boutonnières faites main, boutons dorés ciselés, revers surpiqués et doublures en satin fluide.',
+    title: 'Finitions de Haute Joaillerie Textile',
+    desc: 'Boutonnières milanaises cousues au fil de soie, surpiqûres à la main, boutons ciselés et doublures soyeuses personnalisées.',
     icon: CheckCircle2,
   },
   {
     num: '07',
-    title: 'Personnalisation & Signature',
-    desc: 'Initiales brodées, détails uniques et remise de la création sous housse de protection haute couture.',
+    title: 'Livraison & Présentation de Gala',
+    desc: 'Conditionnement sous housse de voyage haute couture rigide et expédition sécurisée au Cameroun, en Europe ou au Canada.',
     icon: HeartHandshake,
   },
 ];
 
 const VALUES = [
-  { title: 'Excellence', desc: 'Une exigence absolue sur chaque couture, chaque couture et chaque détail intérieur invisible.' },
-  { title: 'Créativité', desc: 'La rencontre audacieuse entre lignes européennes épurées et noblesse des étoffes africaines.' },
-  { title: 'Précision', desc: 'Un patronage rigoureux et une coupe taillée pour sublimer sans jamais contraindre le mouvement.' },
-  { title: 'Personnalisation', desc: 'Chaque pièce raconte une histoire unique : la vôtre.' },
-  { title: 'Élégance', desc: 'Une distinction intemporelle qui traverse les modes avec force et majesté.' },
+  { title: 'Excellence', desc: 'Une exigence absolue sur chaque couture intérieure, invisible aux yeux mais garante d’une tenue intemporelle.' },
+  { title: 'Harmonie', desc: 'Le dialogue harmonieux entre la rigueur du tailoring occidental et la flamboyance maîtrisée des textiles nobles africains.' },
+  { title: 'Précision', desc: 'Un patronage géométrique taillé pour épouser chaque courbe avec aisance et sublimer la stature.' },
+  { title: 'Sur-Mesure Pur', desc: 'Chaque pièce est une œuvre unique portant la signature exclusive de la personne qui l’incarne.' },
+  { title: 'Distinction', desc: 'Une élégance discrète mais magnétique qui traverse les décennies sans jamais subir les modes éphémères.' },
 ];
 
 export default function LaMaisonPage() {
   return (
     <div className="pt-32 pb-24 space-y-24">
       {/* Hero La Maison */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
-        <span className="text-xs uppercase tracking-[0.3em] text-[#C5A880] font-semibold">
-          Maison de Couture Fondée sur l’Excellence
-        </span>
-        <h1 className="font-serif-luxe text-4xl sm:text-6xl md:text-7xl text-[#111111]">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-5">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FAF8F5] border border-[#E8E2D9] text-[11px] uppercase tracking-[0.28em] text-[#C5A880] font-medium">
+          <Sparkles className="w-3 h-3 text-[#C5A880]" />
+          <span>Atelier de Haute Confection & Savoir-Faire</span>
+        </div>
+
+        <h1 className="font-serif-luxe text-4xl sm:text-6xl md:text-7xl text-[#0E0E10] tracking-tight">
           La Maison YANLAMODE
         </h1>
-        <p className="text-sm sm:text-base text-[#666666] max-w-2xl mx-auto font-light leading-relaxed">
-          11 années consacrées à l’art du tailleur, à la géométrie de la silhouette et à l’ennoblissement des textiles d’exception.
+
+        <p className="text-xs sm:text-base text-[#666360] max-w-2xl mx-auto font-light leading-relaxed">
+          11 années d'artisanat d'art consacrées à la maîtrise du tailleur d'apparat, au dialogue des matières nobles et à l’élégance cérémoniale.
         </p>
+
+        {/* Global Delivery Assurance */}
+        <div className="pt-2 flex items-center justify-center gap-2 text-[11px] uppercase tracking-[0.22em] text-[#9E7A45] font-medium">
+          <Globe className="w-3.5 h-3.5" />
+          <span>Atelier à Douala · Confection & Expéditions dans tout le Cameroun, en Europe et au Canada</span>
+        </div>
       </section>
 
       {/* Le Créateur & 11 Années d'Expérience */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          <div className="lg:col-span-5 relative aspect-[3/4] rounded-sm overflow-hidden border border-[#E5DFD7] shadow-lg">
+          <div className="lg:col-span-5 relative aspect-[3/4] rounded-sm overflow-hidden border border-[#E8E2D9] shadow-2xl group">
             <Image
               src="/images/creations/costume-ceremonie-blanc-rouge.jpg"
-              alt="Le Créateur YANLAMODE"
+              alt="Maître Couturier YANLAMODE"
               fill
-              className="object-cover object-top"
+              className="object-cover object-top group-hover:scale-105 transition-transform duration-1000"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-            <div className="absolute bottom-6 left-6 right-6">
-              <span className="text-[10px] uppercase tracking-widest text-[#C5A880] font-semibold">
-                Maître Couturier & Fondateur
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0E0E10]/85 via-[#0E0E10]/20 to-transparent" />
+            <div className="absolute bottom-6 left-6 right-6 space-y-1">
+              <span className="text-[10px] uppercase tracking-[0.25em] text-[#C5A880] font-semibold block">
+                Maître Couturier & Directeur Artistique
               </span>
               <p className="font-serif-luxe text-2xl text-white">
                 YANLAMODE Haute Couture
+              </p>
+              <p className="text-xs text-white/80 font-mono pt-1">
+                +237 6 91 87 00 00 · Douala, Cameroun
               </p>
             </div>
           </div>
 
           <div className="lg:col-span-7 space-y-8">
-            <div className="inline-flex items-center gap-2.5 px-4 py-2 bg-[#FFFFFF] border border-[#C5A880]/60 shadow-sm rounded-full text-[#9E7A45] text-xs uppercase tracking-widest font-semibold">
+            <div className="inline-flex items-center gap-2.5 px-4 py-2 bg-white border border-[#E8E2D9] shadow-sm rounded-full text-[#0E0E10] text-xs uppercase tracking-[0.2em] font-medium">
               <Award className="w-4 h-4 text-[#C5A880]" />
-              <span>11 Années de Savoir-Faire Éprouvé</span>
+              <span>11 Années de Dévotion au Vêtement d'Apparat</span>
             </div>
 
             <div className="space-y-4">
-              <h2 className="font-serif-luxe text-3xl sm:text-4xl md:text-5xl text-[#111111] leading-tight">
-                L’amour du beau geste et de la rigueur artisanale.
+              <h2 className="font-serif-luxe text-3xl sm:text-4xl md:text-5xl text-[#0E0E10] leading-tight">
+                L’amour du beau geste, la rigueur géométrique et l'élégance souveraine.
               </h2>
-              <p className="text-sm text-[#555555] leading-relaxed">
-                Fort de plus d’une décennie d’expérience au cœur des ateliers de confection, le créateur de YANLAMODE s’est imposé comme une référence incontournable de la couture masculine et féminine d’apparat.
+              <p className="text-sm text-[#666360] leading-relaxed font-light">
+                Fort de plus d’une décennie d’expérience au cœur des ateliers de confection, le créateur de YANLAMODE a façonné une signature reconnaissable entre toutes : des lignes épurées, des épaules structurées et un tombé impeccable qui confère instantanément majesté et assurance.
               </p>
-              <p className="text-sm text-[#777777] leading-relaxed">
-                Inspiré à la fois par la rigueur du tailoring britannique, la sensualité de la coupe italienne et la majesté intemporelle des étoffes d’Afrique de l’Ouest, il façonne des pièces qui ne sont pas de simples vêtements, mais de véritables parures de prestige.
+              <p className="text-sm text-[#666360] leading-relaxed font-light">
+                Chaque création réconcilie les exigences du grand patronage classique avec la richesse des héritages textiles d'Afrique : draps de laine italiens, broderies d'or fin, soies lustrées et batiks graphiques se répondent dans une harmonie parfaite.
               </p>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 pt-6 border-t border-[#E5DFD7]">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 pt-6 border-t border-[#E8E2D9]">
               <div>
-                <p className="font-serif-luxe text-3xl sm:text-4xl text-[#C5A880] font-medium">11+</p>
-                <p className="text-xs text-[#777777] uppercase tracking-wider mt-1">Années d’expérience</p>
+                <p className="font-serif-luxe text-3xl sm:text-4xl text-[#C5A880] font-normal">11+</p>
+                <p className="text-[10px] text-[#73706B] uppercase tracking-[0.2em] mt-1">Années de maîtrise</p>
               </div>
               <div>
-                <p className="font-serif-luxe text-3xl sm:text-4xl text-[#111111]">100%</p>
-                <p className="text-xs text-[#777777] uppercase tracking-wider mt-1">Confection sur mesure</p>
+                <p className="font-serif-luxe text-3xl sm:text-4xl text-[#0E0E10] font-normal">100%</p>
+                <p className="text-[10px] text-[#73706B] uppercase tracking-[0.2em] mt-1">Fait Main & Sur-Mesure</p>
               </div>
               <div>
-                <p className="font-serif-luxe text-3xl sm:text-4xl text-[#C5A880] font-medium">7</p>
-                <p className="text-xs text-[#777777] uppercase tracking-wider mt-1">Étapes de rigueur</p>
+                <p className="font-serif-luxe text-3xl sm:text-4xl text-[#C5A880] font-normal">03</p>
+                <p className="text-[10px] text-[#73706B] uppercase tracking-[0.2em] mt-1">Zones (Cameroun, Europe, Canada)</p>
               </div>
             </div>
           </div>
@@ -133,17 +145,17 @@ export default function LaMaisonPage() {
       </section>
 
       {/* Savoir-Faire en 7 Étapes */}
-      <section className="bg-[#F5F1EA]/70 border-y border-[#E5DFD7] py-20">
+      <section className="bg-white border-y border-[#E8E2D9] py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
           <div className="text-center space-y-3 max-w-2xl mx-auto">
-            <span className="text-xs uppercase tracking-[0.3em] text-[#C5A880] font-semibold">
-              Rigueur & Précision
+            <span className="text-[10px] uppercase tracking-[0.3em] text-[#C5A880] font-semibold">
+              Rigueur & Méticulosité
             </span>
-            <h2 className="font-serif-luxe text-3xl sm:text-5xl text-[#111111]">
-              Notre Savoir-Faire
+            <h2 className="font-serif-luxe text-3xl sm:text-5xl text-[#0E0E10]">
+              Le Processus des 7 Étapes
             </h2>
-            <p className="text-xs sm:text-sm text-[#666666]">
-              Découvrez les 7 étapes fondamentales à travers lesquelles chaque création YANLAMODE prend vie.
+            <p className="text-xs sm:text-sm text-[#666360] font-light leading-relaxed">
+              De l’idée initiale jusqu’au dernier point de broderie fait main, découvrez le parcours initiatique de chaque tenue d'apparat.
             </p>
           </div>
 
@@ -153,18 +165,20 @@ export default function LaMaisonPage() {
               return (
                 <div
                   key={step.num}
-                  className="p-8 bg-[#FFFFFF] border border-[#E5DFD7] hover:border-[#C5A880] hover:shadow-md transition-all rounded-sm space-y-4 relative group"
+                  className="p-8 bg-[#FAF8F5] border border-[#E8E2D9] hover:border-[#C5A880] hover:shadow-xl transition-all duration-500 rounded-sm space-y-4 relative group"
                 >
                   <div className="flex items-center justify-between">
-                    <span className="font-serif-luxe text-3xl text-[#C5A880]/60 group-hover:text-[#C5A880] transition-colors">
+                    <span className="font-serif-luxe text-3xl text-[#C5A880]/70 group-hover:text-[#C5A880] transition-colors">
                       {step.num}
                     </span>
-                    <IconComp className="w-5 h-5 text-[#C5A880]" />
+                    <div className="p-2 rounded-full bg-white border border-[#E8E2D9] group-hover:border-[#C5A880] transition-colors">
+                      <IconComp className="w-4 h-4 text-[#C5A880]" />
+                    </div>
                   </div>
-                  <h3 className="font-serif-luxe text-xl text-[#111111] group-hover:text-[#9E7A45] transition-colors">
+                  <h3 className="font-serif-luxe text-xl text-[#0E0E10] group-hover:text-[#9E7A45] transition-colors">
                     {step.title}
                   </h3>
-                  <p className="text-xs text-[#555555] leading-relaxed">
+                  <p className="text-xs text-[#666360] font-light leading-relaxed">
                     {step.desc}
                   </p>
                 </div>
@@ -177,11 +191,11 @@ export default function LaMaisonPage() {
       {/* Nos Valeurs */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         <div className="text-center space-y-3">
-          <span className="text-xs uppercase tracking-[0.3em] text-[#C5A880] font-semibold">
-            Ce qui nous anime
+          <span className="text-[10px] uppercase tracking-[0.3em] text-[#C5A880] font-semibold">
+            Éthique & Exigence
           </span>
-          <h2 className="font-serif-luxe text-3xl sm:text-5xl text-[#111111]">
-            Nos Valeurs
+          <h2 className="font-serif-luxe text-3xl sm:text-5xl text-[#0E0E10]">
+            Les Valeurs de la Maison
           </h2>
         </div>
 
@@ -189,30 +203,33 @@ export default function LaMaisonPage() {
           {VALUES.map((val) => (
             <div
               key={val.title}
-              className="p-6 bg-[#FFFFFF] border border-[#E5DFD7] rounded-sm text-center space-y-3 shadow-sm hover:border-[#C5A880]/60 transition-colors"
+              className="p-6 bg-white border border-[#E8E2D9] rounded-sm text-center space-y-3 shadow-sm hover:border-[#C5A880] transition-all hover:-translate-y-1 duration-300"
             >
-              <h3 className="font-serif-luxe text-base text-[#9E7A45] uppercase tracking-wider font-semibold">
+              <h3 className="font-serif-luxe text-base text-[#0E0E10] uppercase tracking-wider font-semibold">
                 {val.title}
               </h3>
-              <p className="text-xs text-[#666666] leading-relaxed">
+              <p className="text-xs text-[#666360] font-light leading-relaxed">
                 {val.desc}
               </p>
             </div>
           ))}
         </div>
 
-        {/* Action WhatsApp */}
-        <div className="pt-10 text-center">
+        {/* Action Button */}
+        <div className="pt-10 text-center space-y-3">
           <a
             href={generateWhatsAppLink({ type: 'contact' })}
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => trackEvent('whatsapp_click', { path: '/la-maison' })}
-            className="inline-flex items-center gap-3 px-8 py-4 bg-[#111111] text-[#FAF8F5] border border-[#C5A880]/50 font-semibold text-xs uppercase tracking-[0.25em] rounded-sm hover:bg-[#C5A880] hover:text-[#111111] transition-all shadow-md"
+            className="inline-flex items-center gap-3 px-9 py-4 bg-[#0E0E10] text-[#FAF8F5] border border-[#C5A880]/50 font-semibold text-xs uppercase tracking-[0.24em] rounded-sm hover:bg-[#C5A880] hover:text-[#0E0E10] transition-all shadow-xl hover:scale-105"
           >
-            <MessageCircle className="w-4 h-4 text-[#25D366]" />
-            <span>Commander & Prendre rendez-vous</span>
+            <span className="w-2 h-2 rounded-full bg-[#25D366]" />
+            <span>COMMANDER & PRENDRE RENDEZ-VOUS</span>
           </a>
+          <p className="text-[11px] text-[#73706B] font-mono">
+            WhatsApp : +237 6 91 87 00 00 · Standard : +237 6 97 25 14 25
+          </p>
         </div>
       </section>
     </div>

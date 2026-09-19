@@ -118,37 +118,38 @@ export default function SurMesurePage() {
     <div className="pt-32 pb-24 space-y-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {/* Title & Introduction */}
       <section className="text-center space-y-4">
-        <span className="text-xs uppercase tracking-[0.3em] text-[#C5A880] font-semibold">
+        <span className="text-[11px] uppercase tracking-[0.32em] text-[#C5A880] font-semibold">
           Service Haute Couture Personnalisé
         </span>
-        <h1 className="font-serif-luxe text-4xl sm:text-6xl md:text-7xl text-[#111111] uppercase">
-          VOTRE IDÉE. NOTRE SAVOIR-FAIRE.
+        <h1 className="font-serif-luxe text-4xl sm:text-6xl md:text-7xl text-[#0E0E10] font-normal leading-[1.05]">
+          Votre Idée. <br />
+          <span className="italic text-[#8C6D42]">Notre Savoir-Faire.</span>
         </h1>
-        <p className="text-sm text-[#666666] max-w-2xl mx-auto font-light leading-relaxed">
-          Donnez vie à une tenue entièrement façonnée pour vous par un couturier cumulant 11 années d’expérience dans l’art du sur-mesure.
+        <p className="text-xs sm:text-sm text-[#615B52] max-w-xl mx-auto font-light leading-relaxed">
+          Donnez vie à une tenue entièrement façonnée pour vous par notre Maître Couturier cumulant 11 années d’expérience dans l’art du sur-mesure.
         </p>
       </section>
 
       {/* 4 Process Steps */}
       <section className="space-y-10">
-        <div className="text-center space-y-2">
-          <span className="text-xs uppercase tracking-widest text-[#C5A880] font-semibold">Le Parcours de Création</span>
-          <h2 className="font-serif-luxe text-2xl sm:text-4xl text-[#111111]">Comment se déroule votre commande ?</h2>
+        <div className="text-center space-y-1.5">
+          <span className="text-[10.5px] uppercase tracking-[0.28em] text-[#C5A880] font-semibold">Le Parcours de Confection</span>
+          <h2 className="font-serif-luxe text-2xl sm:text-4xl text-[#0E0E10] font-normal">Comment se déroule votre commande ?</h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {PROCESS_STEPS.map((item) => (
             <div
               key={item.step}
-              className="p-6 bg-[#FFFFFF] border border-[#E5DFD7] rounded-sm space-y-3 relative group hover:border-[#C5A880] shadow-sm transition-all"
+              className="p-8 bg-[#FFFFFF] border border-[#E8E2D9] space-y-3 relative group hover:border-[#C5A880] shadow-sm transition-all duration-400"
             >
-              <span className="font-serif-luxe text-3xl text-[#C5A880]/60 group-hover:text-[#C5A880] transition-colors">
-                {item.step}
+              <span className="font-mono text-xs text-[#C5A880] font-medium tracking-widest block">
+                ÉTAPE {item.step}
               </span>
-              <h3 className="font-serif-luxe text-lg text-[#111111] font-medium">
+              <h3 className="font-serif-luxe text-xl text-[#0E0E10] font-medium">
                 {item.title}
               </h3>
-              <p className="text-xs text-[#666666] leading-relaxed">
+              <p className="text-xs text-[#6B645B] leading-relaxed font-light">
                 {item.desc}
               </p>
             </div>
@@ -157,21 +158,21 @@ export default function SurMesurePage() {
       </section>
 
       {/* Bespoke Interactive Form */}
-      <section className="max-w-4xl mx-auto bg-[#FFFFFF] border border-[#E5DFD7] rounded-sm p-6 sm:p-10 lg:p-12 space-y-8 shadow-md">
+      <section className="max-w-4xl mx-auto bg-[#FFFFFF] border border-[#E8E2D9] p-8 sm:p-12 lg:p-16 space-y-8 shadow-sm">
         {!submitted ? (
           <form onSubmit={handleSubmit} className="space-y-8">
-            <div className="border-b border-[#E5DFD7] pb-4">
-              <h2 className="font-serif-luxe text-2xl sm:text-3xl text-[#111111]">
+            <div className="border-b border-[#E8E2D9] pb-5">
+              <h2 className="font-serif-luxe text-2xl sm:text-3xl text-[#0E0E10] font-normal">
                 Formulaire de Commande Sur Mesure
               </h2>
-              <p className="text-xs text-[#666666] mt-1">
-                Remplissez les détails de votre tenue. Une fois validée, la demande s’enregistrera et ouvrira votre WhatsApp pour échanger directement avec le créateur.
+              <p className="text-xs text-[#6B645B] mt-1.5 font-light">
+                Remplissez les détails de votre tenue. La demande est transmise à l'atelier et synchronisée directement sur WhatsApp.
               </p>
             </div>
 
             {/* Coordonnées */}
             <div className="space-y-4">
-              <h3 className="text-xs uppercase tracking-widest text-[#9E7A45] font-semibold">
+              <h3 className="text-[11px] uppercase tracking-[0.24em] text-[#8C6D42] font-semibold">
                 1. Vos Coordonnées
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -410,14 +411,14 @@ export default function SurMesurePage() {
               <button
                 type="submit"
                 disabled={submitting}
-                className="w-full py-4 bg-[#111111] text-[#FAF8F5] border border-[#C5A880]/50 font-semibold text-xs uppercase tracking-[0.25em] rounded-sm hover:bg-[#C5A880] hover:text-[#111111] transition-all flex items-center justify-center gap-3 disabled:opacity-50 shadow-md"
+                className="w-full py-4 bg-[#0E0E10] hover:bg-[#C5A880] text-[#FFFFFF] hover:text-[#0E0E10] border border-[#0E0E10] hover:border-[#C5A880] transition-all duration-400 font-semibold text-xs uppercase tracking-[0.26em] shadow-md flex items-center justify-center gap-3 disabled:opacity-50"
               >
                 {submitting ? (
-                  <span>Enregistrement en cours...</span>
+                  <span>Transmission à l'atelier en cours...</span>
                 ) : (
                   <>
-                    <Send className="w-4 h-4 text-[#C5A880]" />
-                    <span>Commander sur mesure</span>
+                    <span className="w-2 h-2 rounded-full bg-[#C5A880] group-hover:bg-[#0E0E10]" />
+                    <span>TRANSMETTRE MA COMMANDE SUR MESURE</span>
                   </>
                 )}
               </button>
@@ -425,17 +426,17 @@ export default function SurMesurePage() {
           </form>
         ) : (
           /* Confirmation State */
-          <div className="py-12 text-center space-y-6">
-            <div className="w-16 h-16 bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 rounded-full flex items-center justify-center mx-auto">
+          <div className="py-16 text-center space-y-6">
+            <div className="w-16 h-16 bg-[#C5A880]/15 border border-[#C5A880]/40 text-[#8C6D42] rounded-full flex items-center justify-center mx-auto">
               <CheckCircle2 className="w-8 h-8" />
             </div>
 
             <div className="space-y-2">
-              <h2 className="font-serif-luxe text-3xl text-[#111111]">
-                Votre demande a été enregistrée avec succès !
+              <h2 className="font-serif-luxe text-3xl sm:text-4xl text-[#0E0E10] font-normal">
+                Votre commande a été transmise à l'atelier
               </h2>
-              <p className="text-xs text-[#666666] max-w-md mx-auto leading-relaxed">
-                Elle est désormais transmise à notre atelier. Cliquez sur le bouton ci-dessous pour ouvrir immédiatement votre échange avec le créateur Yanlamode.
+              <p className="text-xs sm:text-sm text-[#666157] max-w-md mx-auto leading-relaxed font-light">
+                Le Maître Couturier étudie vos spécifications. Cliquez sur le bouton ci-dessous pour finaliser l'échange sur WhatsApp.
               </p>
             </div>
 
@@ -444,10 +445,10 @@ export default function SurMesurePage() {
                 href={whatsappLink || 'https://wa.me/237691870000'}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 px-8 py-4 bg-[#111111] text-[#FAF8F5] border border-[#C5A880]/50 font-semibold text-xs uppercase tracking-[0.25em] rounded-sm hover:bg-[#C5A880] hover:text-[#111111] transition-all shadow-md"
+                className="inline-flex items-center gap-3 px-9 py-4 bg-[#0E0E10] text-[#FFFFFF] hover:bg-[#C5A880] hover:text-[#0E0E10] border border-[#0E0E10] hover:border-[#C5A880] font-semibold text-xs uppercase tracking-[0.26em] transition-all duration-400 shadow-md"
               >
-                <MessageCircle className="w-5 h-5 text-[#25D366]" />
-                <span>Finaliser ma commande</span>
+                <span className="w-2 h-2 rounded-full bg-[#C5A880]" />
+                <span>OUVRIR MON ÉCHANGE SUR WHATSAPP</span>
               </a>
             </div>
           </div>

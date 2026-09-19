@@ -143,82 +143,82 @@ export default function CreationDetailPage() {
         </div>
 
         {/* Right column: Creation details & Bespoke Order */}
-        <div className="lg:col-span-5 flex flex-col justify-between space-y-6 bg-[#FFFFFF] p-8 sm:p-10 border border-[#E5DFD7] rounded-sm shadow-sm">
+        <div className="lg:col-span-5 flex flex-col justify-between space-y-6 bg-[#FFFFFF] p-8 sm:p-12 border border-[#E8E2D9] shadow-sm">
           <div className="space-y-6">
             {/* Status & Reference Header */}
             <div className="flex items-center justify-between">
-              <span className="text-xs uppercase tracking-[0.2em] text-[#C5A880] font-semibold">
+              <span className="text-[11px] uppercase tracking-[0.28em] text-[#C5A880] font-semibold">
                 {creation.category} · {creation.gender}
               </span>
-              <span className="text-xs font-mono text-[#666666] bg-[#FAF8F5] px-2.5 py-1 border border-[#E5DFD7] rounded-sm">
+              <span className="text-[11px] font-mono text-[#736E67] bg-[#FAF8F5] px-3 py-1 border border-[#E8E2D9]">
                 RÉF : {creation.ref}
               </span>
             </div>
 
             {/* Title */}
-            <h1 className="font-serif-luxe text-3xl sm:text-4xl text-[#111111] leading-tight">
+            <h1 className="font-serif-luxe text-3xl sm:text-4xl lg:text-5xl text-[#0E0E10] leading-tight font-normal">
               {creation.title}
             </h1>
 
-            {/* Availability Indicator (Direct & Visible) */}
+            {/* Availability Indicator */}
             <div className="flex flex-wrap items-center gap-3">
               {creation.status === 'Disponible sur commande' ? (
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-sm border border-[#A5D6A7] bg-[#E8F5E9] text-[#1B5E20] text-xs font-medium">
-                  <span className="w-2 h-2 rounded-full bg-[#2E7D32] animate-pulse" />
+                <div className="inline-flex items-center gap-2 px-3 py-1 border border-[#A5D6A7] bg-[#E8F5E9] text-[#1B5E20] text-[11px] font-medium">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#2E7D32]" />
                   <span>Disponible sur commande</span>
                 </div>
               ) : creation.status === 'Création sur mesure' ? (
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-sm border border-[#DFC5A2] bg-[#FAF3E8] text-[#8C6D42] text-xs font-semibold">
-                  <span className="w-2 h-2 rounded-full bg-[#C5A880]" />
+                <div className="inline-flex items-center gap-2 px-3 py-1 border border-[#DFC5A2] bg-[#FAF3E8] text-[#8C6D42] text-[11px] font-medium">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#C5A880]" />
                   <span>Confection sur mesure d'exception</span>
                 </div>
               ) : (
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-sm border border-[#E0E0E0] bg-[#F5F5F5] text-[#616161] text-xs font-medium">
+                <div className="inline-flex items-center gap-2 px-3 py-1 border border-[#E0E0E0] bg-[#F5F5F5] text-[#616161] text-[11px] font-medium">
                   <span>Modèle actuellement indisponible</span>
                 </div>
               )}
-              <span className="text-[11px] text-[#777777]">Délais atelier : 5 à 10 jours ouvrés</span>
+              <span className="text-[10.5px] text-[#7A746B] tracking-wider uppercase">Délai atelier : 5 à 10 jours</span>
             </div>
 
             {/* Description */}
-            <p className="text-sm text-[#555555] leading-relaxed">
+            <p className="text-xs sm:text-sm text-[#504A42] leading-relaxed font-light">
               {creation.description}
             </p>
 
             {/* Specifications Details */}
-            <div className="space-y-2.5 pt-4 border-t border-[#E5DFD7] text-xs">
-              <div className="flex justify-between py-1.5 border-b border-[#E5DFD7]/60">
-                <span className="text-[#777777] uppercase tracking-wider">Matières & Tissus</span>
-                <span className="text-[#111111] font-medium text-right max-w-[65%]">{creation.fabric}</span>
+            <div className="space-y-2.5 pt-4 border-t border-[#E8E2D9] text-xs">
+              <div className="flex justify-between py-2 border-b border-[#F2ECE4]">
+                <span className="text-[#8C8377] uppercase tracking-[0.16em] text-[10.5px]">Matière noble</span>
+                <span className="text-[#0E0E10] font-medium text-right max-w-[65%]">{creation.fabric}</span>
               </div>
 
-              <div className="flex justify-between py-1.5 border-b border-[#E5DFD7]/60">
-                <span className="text-[#777777] uppercase tracking-wider">Nuances disponibles</span>
-                <span className="text-[#111111] font-medium">{creation.colors.join(' · ')}</span>
+              <div className="flex justify-between py-2 border-b border-[#F2ECE4]">
+                <span className="text-[#8C8377] uppercase tracking-[0.16em] text-[10.5px]">Palette de teintes</span>
+                <span className="text-[#0E0E10] font-medium">{creation.colors.join(' · ')}</span>
               </div>
 
-              <div className="flex justify-between py-1.5 border-b border-[#E5DFD7]/60">
-                <span className="text-[#777777] uppercase tracking-wider">Confection</span>
-                <span className="text-[#9E7A45] font-semibold">Patronage artisanal & Essayages privés</span>
+              <div className="flex justify-between py-2 border-b border-[#F2ECE4]">
+                <span className="text-[#8C8377] uppercase tracking-[0.16em] text-[10.5px]">Confection</span>
+                <span className="text-[#8C6D42] font-semibold">Patronage Haute Précision</span>
               </div>
             </div>
 
-            {/* Highlighted Delivery Card: Cameroun, Europe, Canada */}
-            <div className="p-4 bg-[#FAF8F5] border border-[#E5DFD7] rounded-sm space-y-2 text-xs">
-              <div className="flex items-center gap-2 text-[#111111] font-semibold uppercase tracking-wider">
+            {/* Highlighted Delivery Card */}
+            <div className="p-4 bg-[#FAF8F5] border border-[#E8E2D9] space-y-1.5 text-xs">
+              <div className="flex items-center gap-2 text-[#0E0E10] font-semibold uppercase tracking-[0.2em] text-[10.5px]">
                 <span className="text-[#C5A880]">✦</span>
-                <span>Livraisons Sécurisées</span>
+                <span>Expéditions Sécurisées</span>
               </div>
-              <p className="text-[#555555] leading-relaxed text-[11px]">
-                Nous livrons <strong>partout au Cameroun</strong> (Douala, Yaoundé, Bafoussam, Garoua...) ainsi qu'à l'international en <strong>Europe</strong> et au <strong>Canada</strong>.
+              <p className="text-[#666157] leading-relaxed text-[11px] font-light">
+                Livraisons directes <strong>partout au Cameroun</strong> (Douala, Yaoundé...), en <strong>Europe</strong> et au <strong>Canada</strong>.
               </p>
             </div>
 
-            {/* Interactive Order Preferences before dispatch to Yanlamode WhatsApp */}
-            <div className="space-y-4 pt-4 border-t border-[#E5DFD7]">
+            {/* Interactive Order Preferences */}
+            <div className="space-y-4 pt-4 border-t border-[#E8E2D9]">
               <div>
-                <label className="block text-xs uppercase tracking-wider text-[#111111] font-semibold mb-2">
-                  1. Votre Lieu de Livraison
+                <label className="block text-[11px] uppercase tracking-[0.2em] text-[#0E0E10] font-semibold mb-2">
+                  1. Zone de Livraison Souhaitée
                 </label>
                 <div className="grid grid-cols-3 gap-2">
                   {['Partout au Cameroun', 'Europe', 'Canada'].map((dest) => (
@@ -226,10 +226,10 @@ export default function CreationDetailPage() {
                       key={dest}
                       type="button"
                       onClick={() => setDeliveryLocation(dest)}
-                      className={`py-2 px-2 text-[11px] rounded-sm border transition-all text-center font-medium ${
+                      className={`py-2 px-2 text-[11px] border transition-all text-center font-medium ${
                         deliveryLocation === dest
-                          ? 'border-[#C5A880] bg-[#111111] text-[#FAF8F5] shadow-xs'
-                          : 'border-[#E5DFD7] bg-[#FAF8F5] text-[#555555] hover:border-[#C5A880]'
+                          ? 'border-[#0E0E10] bg-[#0E0E10] text-[#FFFFFF] shadow-xs'
+                          : 'border-[#E8E2D9] bg-[#FAF8F5] text-[#555047] hover:border-[#C5A880]'
                       }`}
                     >
                       {dest === 'Partout au Cameroun' ? '🇨🇲 Cameroun' : dest === 'Europe' ? '🇪🇺 Europe' : '🇨🇦 Canada'}
@@ -239,47 +239,35 @@ export default function CreationDetailPage() {
               </div>
 
               <div>
-                <label className="block text-xs uppercase tracking-wider text-[#111111] font-semibold mb-1.5">
-                  2. Votre Budget Indicatif <span className="text-[10px] text-[#777777] font-normal">(Optionnel)</span>
+                <label className="block text-[11px] uppercase tracking-[0.2em] text-[#0E0E10] font-semibold mb-1.5">
+                  2. Votre Budget Indicatif <span className="text-[10px] text-[#8C8377] font-normal">(Optionnel)</span>
                 </label>
                 <input
                   type="text"
-                  placeholder="Ex : 250 000 - 400 000 FCFA / 500 €"
+                  placeholder="Ex : 250 000 - 450 000 FCFA / 600 €"
                   value={clientBudget}
                   onChange={(e) => setClientBudget(e.target.value)}
-                  className="w-full px-3.5 py-2.5 bg-[#FAF8F5] border border-[#E5DFD7] rounded-sm text-xs text-[#111111] placeholder-[#888888] focus:outline-none focus:border-[#C5A880]"
+                  className="w-full px-4 py-2.5 bg-[#FAF8F5] border border-[#E8E2D9] text-xs text-[#0E0E10] placeholder-[#888888] focus:outline-none focus:border-[#C5A880] transition-colors"
                 />
-              </div>
-            </div>
-
-            {/* Reassurance points */}
-            <div className="grid grid-cols-2 gap-3 pt-1 text-[11px] text-[#666666]">
-              <div className="flex items-center gap-2">
-                <Sparkles className="w-3.5 h-3.5 text-[#C5A880]" />
-                <span>11 ans de savoir-faire</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <ShieldCheck className="w-3.5 h-3.5 text-[#C5A880]" />
-                <span>Ajustement anatomique parfait</span>
               </div>
             </div>
           </div>
 
           {/* Primary Action Button: Commander */}
-          <div className="space-y-3 pt-6 border-t border-[#E5DFD7]">
+          <div className="space-y-3 pt-6 border-t border-[#E8E2D9]">
             <a
               href={dynamicWhatsAppUrl}
               target="_blank"
               rel="noopener noreferrer"
               onClick={handleOrderClick}
-              className="w-full flex items-center justify-center gap-3 py-4 px-6 bg-[#111111] text-[#FAF8F5] border border-[#C5A880]/50 font-semibold text-xs uppercase tracking-[0.25em] rounded-sm hover:bg-[#C5A880] hover:text-[#111111] transition-all shadow-md"
+              className="w-full flex items-center justify-center gap-3 py-4 px-6 bg-[#0E0E10] text-[#FFFFFF] hover:bg-[#C5A880] hover:text-[#0E0E10] transition-all duration-400 font-semibold text-xs uppercase tracking-[0.26em] shadow-md border border-[#0E0E10] hover:border-[#C5A880]"
             >
-              <MessageCircle className="w-4 h-4 text-[#C5A880]" />
-              <span>Commander</span>
+              <span className="w-2 h-2 rounded-full bg-[#C5A880] group-hover:bg-[#0E0E10]" />
+              <span>COMMANDER CE MODÈLE</span>
             </a>
 
-            <p className="text-[11px] text-[#777777] text-center leading-normal">
-              En cliquant sur <strong>Commander</strong>, vous êtes dirigé vers l'atelier <strong>Yanlamode</strong> avec un message récapitulant cette création, votre destination ({deliveryLocation}) et votre budget.
+            <p className="text-[10.5px] text-[#7A746B] text-center leading-relaxed font-light">
+              Mise en relation directe avec le créateur <strong>Yanlamode</strong> (+237 6 91 87 00 00) avec votre modèle, destination ({deliveryLocation}) et budget.
             </p>
           </div>
         </div>

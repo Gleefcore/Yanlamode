@@ -43,28 +43,28 @@ export default function Navbar() {
       <TopAnnouncementBar />
 
       <div
-        className={`transition-all duration-300 ${
+        className={`transition-all duration-500 ${
           scrolled
-            ? 'bg-[#FFFFFF]/95 backdrop-blur-md border-b border-[#E8E2D9] py-3 shadow-sm'
-            : 'bg-gradient-to-b from-[#FAF8F5] via-[#FAF8F5]/90 to-transparent py-4'
+            ? 'bg-[#FFFFFF]/95 backdrop-blur-xl border-b border-[#E8E2D9]/70 py-3.5 shadow-[0_4px_30px_rgba(0,0,0,0.03)]'
+            : 'bg-[#FAF8F5]/90 backdrop-blur-md py-4 border-b border-[#E8E2D9]/30'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           {/* Brand Logo */}
           <Link href="/" className="flex items-center gap-3.5 group">
-            <div className="relative w-11 h-11 rounded-full overflow-hidden bg-white p-1 border border-[#C5A880] shadow-sm group-hover:scale-105 transition-transform duration-300">
+            <div className="relative w-10 h-10 rounded-full overflow-hidden bg-white p-0.5 border border-[#C5A880]/60 shadow-sm group-hover:border-[#C5A880] transition-colors duration-300">
               <Image
                 src="/images/brand/logo.jpg"
                 alt="YANLAMODE Haute Couture"
                 fill
-                className="object-contain p-0.5"
+                className="object-contain p-0.5 group-hover:scale-105 transition-transform duration-500"
               />
             </div>
             <div>
-              <span className="font-serif-luxe text-lg sm:text-xl tracking-[0.2em] uppercase font-bold text-[#111111] group-hover:text-[#C5A880] transition-colors">
+              <span className="font-serif-luxe text-lg sm:text-xl tracking-[0.24em] uppercase font-bold text-[#0E0E10] group-hover:text-[#8C6D42] transition-colors">
                 YANLAMODE
               </span>
-              <span className="block text-[9px] uppercase tracking-[0.35em] text-[#C5A880] font-semibold">
+              <span className="block text-[8.5px] uppercase tracking-[0.38em] text-[#C5A880] font-medium">
                 Haute Couture
               </span>
             </div>
@@ -78,33 +78,35 @@ export default function Navbar() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`text-xs uppercase tracking-[0.22em] transition-all relative py-1.5 font-medium ${
+                  className={`text-[11px] uppercase tracking-[0.26em] transition-all relative py-1 font-medium ${
                     isActive
-                      ? 'text-[#C5A880] font-semibold'
-                      : 'text-[#4A4641] hover:text-[#111111]'
+                      ? 'text-[#0E0E10] font-semibold'
+                      : 'text-[#5C564E] hover:text-[#0E0E10]'
                   }`}
                 >
                   {link.name}
-                  {isActive && (
-                    <span className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-[#C5A880]" />
+                  {isActive ? (
+                    <span className="absolute -bottom-1 left-0 right-0 h-[1.5px] bg-[#C5A880]" />
+                  ) : (
+                    <span className="absolute -bottom-1 left-1/2 right-1/2 h-[1px] bg-[#C5A880] transition-all duration-300 group-hover:left-0 group-hover:right-0" />
                   )}
                 </Link>
               );
             })}
           </nav>
 
-          {/* Action Button: Commander (au lieu de WhatsApp) */}
+          {/* Action Button: Commander */}
           <div className="hidden sm:flex items-center space-x-4">
             <a
               href={generateWhatsAppLink({ type: 'general' })}
               target="_blank"
               rel="noopener noreferrer"
               onClick={handleWhatsAppClick}
-              className="flex items-center gap-2 px-5 py-2.5 text-xs uppercase tracking-[0.2em] bg-[#111111] hover:bg-[#C5A880] text-[#FAF8F5] hover:text-[#111111] border border-[#C5A880]/50 hover:border-[#C5A880] transition-all duration-300 rounded-sm font-semibold shadow-sm"
+              className="flex items-center gap-2.5 px-6 py-2.5 text-[11px] uppercase tracking-[0.24em] bg-[#0E0E10] hover:bg-[#C5A880] text-[#FFFFFF] hover:text-[#0E0E10] border border-[#0E0E10] hover:border-[#C5A880] transition-all duration-400 font-semibold shadow-sm rounded-none"
               title="Passer une commande ou échanger avec l'atelier"
             >
-              <MessageCircle className="w-3.5 h-3.5 text-[#C5A880] hover:text-[#111111] fill-current" />
-              <span>Commander</span>
+              <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#C5A880] group-hover:bg-[#0E0E10]" />
+              <span>COMMANDER</span>
             </a>
           </div>
 

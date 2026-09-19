@@ -114,18 +114,18 @@ export default function AdminDashboardPage() {
   return (
     <div className="space-y-10">
       {/* Top Header & Period Filter */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#1C1C1C] pb-6">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/[0.08] pb-6">
         <div>
-          <h1 className="font-serif-luxe text-3xl text-white">
-            Tableau de Bord & Performance
+          <h1 className="font-serif-luxe text-3xl sm:text-4xl text-white font-normal">
+            Studio Cockpit &amp; Performance
           </h1>
-          <p className="text-xs text-[#737373] mt-1">
-            Cockpit de mesure d'audience, conversion des prospects et suivi des créations.
+          <p className="text-xs text-[#A1A1AA] mt-1 font-light tracking-wide">
+            Mesure d'audience, conversion des prospects WhatsApp et suivi des créations en temps réel.
           </p>
         </div>
 
         {/* Period Buttons */}
-        <div className="flex items-center gap-1.5 bg-[#121212] p-1 border border-[#222222] rounded-sm text-xs">
+        <div className="flex items-center gap-1 bg-[#141418] p-1 border border-white/[0.08] rounded-sm text-xs">
           {[
             { key: 'today', label: "Aujourd'hui" },
             { key: '7d', label: '7 jours' },
@@ -136,10 +136,10 @@ export default function AdminDashboardPage() {
             <button
               key={item.key}
               onClick={() => setPeriod(item.key as any)}
-              className={`px-3 py-1.5 rounded-sm transition-all ${
+              className={`px-3 py-1.5 transition-all text-[11px] uppercase tracking-wider font-medium ${
                 period === item.key
-                  ? 'bg-[#C5A880] text-black font-semibold'
-                  : 'text-[#A3A3A3] hover:text-white'
+                  ? 'bg-[#C5A880] text-[#09090B] font-semibold shadow-xs'
+                  : 'text-[#A1A1AA] hover:text-white'
               }`}
             >
               {item.label}
@@ -149,32 +149,32 @@ export default function AdminDashboardPage() {
       </div>
 
       {/* KPI Cards Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
         {kpis.map((kpi) => {
           const IconComp = kpi.icon;
           return (
             <div
               key={kpi.title}
-              className={`p-5 rounded-sm border transition-all ${
+              className={`p-6 border transition-all duration-300 ${
                 kpi.highlight
-                  ? 'bg-[#152419] border-[#25D366]/40'
+                  ? 'bg-[#101912] border-emerald-500/30 hover:border-emerald-500/60'
                   : kpi.gold
-                  ? 'bg-[#1A1813] border-[#C5A880]/40'
-                  : 'bg-[#121212] border-[#222222]'
+                  ? 'bg-[#171410] border-[#C5A880]/30 hover:border-[#C5A880]/70'
+                  : 'bg-[#121216] border-white/[0.08] hover:border-white/[0.18]'
               }`}
             >
               <div className="flex items-center justify-between">
-                <span className="text-[11px] uppercase tracking-wider text-[#A3A3A3] font-medium">
+                <span className="text-[10.5px] uppercase tracking-[0.2em] text-[#A1A1AA] font-medium">
                   {kpi.title}
                 </span>
                 <IconComp className={`w-4 h-4 ${
-                  kpi.highlight ? 'text-[#25D366]' : kpi.gold ? 'text-[#C5A880]' : 'text-[#737373]'
+                  kpi.highlight ? 'text-emerald-400' : kpi.gold ? 'text-[#C5A880]' : 'text-[#71717A]'
                 }`} />
               </div>
 
               <div className="mt-4 flex items-baseline justify-between">
                 <p className={`font-serif-luxe text-3xl font-bold ${
-                  kpi.highlight ? 'text-[#25D366]' : kpi.gold ? 'text-[#C5A880]' : 'text-white'
+                  kpi.highlight ? 'text-emerald-400' : kpi.gold ? 'text-[#C5A880]' : 'text-white'
                 }`}>
                   {kpi.value}
                 </p>
@@ -183,7 +183,7 @@ export default function AdminDashboardPage() {
                 </span>
               </div>
 
-              <p className="text-[10px] text-[#737373] mt-1 truncate">
+              <p className="text-[10.5px] text-[#71717A] mt-1.5 truncate font-light">
                 {kpi.sub}
               </p>
             </div>
@@ -192,26 +192,26 @@ export default function AdminDashboardPage() {
       </div>
 
       {/* Interactive Charts Section */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Main Visits & WhatsApp Evolution Chart */}
-        <div className="lg:col-span-8 p-6 bg-[#121212] border border-[#222222] rounded-sm space-y-6">
-          <div className="flex items-center justify-between">
+        <div className="lg:col-span-8 p-6 sm:p-8 bg-[#121216] border border-white/[0.08] space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div>
-              <h3 className="font-serif-luxe text-xl text-white">
-                Évolution des Visites & Clics WhatsApp
+              <h3 className="font-serif-luxe text-xl text-white font-normal">
+                Fréquentation du Catalogue &amp; Clics WhatsApp
               </h3>
-              <p className="text-xs text-[#737373]">
-                Fréquentation quotidienne du site et conversion directe vers WhatsApp.
+              <p className="text-xs text-[#A1A1AA] font-light">
+                Activité journalière des acheteurs potentiels et prise de contact direct.
               </p>
             </div>
             <div className="flex items-center gap-4 text-xs">
-              <div className="flex items-center gap-1.5 text-[#D4D4D4]">
-                <span className="w-2.5 h-2.5 rounded-full bg-[#C5A880]" />
-                <span>Pages Vues</span>
+              <div className="flex items-center gap-2 text-[#E4E4E7]">
+                <span className="w-2 h-2 rounded-full bg-[#C5A880]" />
+                <span className="text-[11px] uppercase tracking-wider">Pages Vues</span>
               </div>
-              <div className="flex items-center gap-1.5 text-[#D4D4D4]">
-                <span className="w-2.5 h-2.5 rounded-full bg-[#25D366]" />
-                <span>WhatsApp</span>
+              <div className="flex items-center gap-2 text-[#E4E4E7]">
+                <span className="w-2 h-2 rounded-full bg-emerald-400" />
+                <span className="text-[11px] uppercase tracking-wider">WhatsApp</span>
               </div>
             </div>
           </div>
@@ -221,22 +221,23 @@ export default function AdminDashboardPage() {
               <AreaChart data={analytics.dailyVisits}>
                 <defs>
                   <linearGradient id="goldGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#C5A880" stopOpacity={0.4} />
+                    <stop offset="5%" stopColor="#C5A880" stopOpacity={0.35} />
                     <stop offset="95%" stopColor="#C5A880" stopOpacity={0} />
                   </linearGradient>
                   <linearGradient id="greenGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#25D366" stopOpacity={0.4} />
-                    <stop offset="95%" stopColor="#25D366" stopOpacity={0} />
+                    <stop offset="5%" stopColor="#10B981" stopOpacity={0.35} />
+                    <stop offset="95%" stopColor="#10B981" stopOpacity={0} />
                   </linearGradient>
                 </defs>
-                <XAxis dataKey="day" stroke="#525252" fontSize={11} />
-                <YAxis stroke="#525252" fontSize={11} />
+                <XAxis dataKey="day" stroke="#52525B" fontSize={11} tickLine={false} />
+                <YAxis stroke="#52525B" fontSize={11} tickLine={false} axisLine={false} />
                 <Tooltip
                   contentStyle={{
-                    backgroundColor: '#181818',
-                    borderColor: '#262626',
-                    borderRadius: '4px',
+                    backgroundColor: '#18181C',
+                    borderColor: 'rgba(197, 168, 128, 0.3)',
+                    borderRadius: '2px',
                     fontSize: '11px',
+                    color: '#FFF',
                   }}
                 />
                 <Area
@@ -251,7 +252,7 @@ export default function AdminDashboardPage() {
                 <Area
                   type="monotone"
                   dataKey="whatsapp"
-                  stroke="#25D366"
+                  stroke="#10B981"
                   strokeWidth={2}
                   fillOpacity={1}
                   fill="url(#greenGrad)"
@@ -262,16 +263,16 @@ export default function AdminDashboardPage() {
           </div>
         </div>
 
-        {/* Traffic Sources UTM Distribution */}
-        <div className="lg:col-span-4 p-6 bg-[#121212] border border-[#222222] rounded-sm space-y-6">
+        {/* Traffic Sources Distribution */}
+        <div className="lg:col-span-4 p-6 sm:p-8 bg-[#121216] border border-white/[0.08] space-y-6">
           <div>
-            <h3 className="font-serif-luxe text-xl text-white">Sources de Trafic</h3>
-            <p className="text-xs text-[#737373]">
-              Attribution des visiteurs (Réseaux sociaux & Organique).
+            <h3 className="font-serif-luxe text-xl text-white font-normal">Origine des Visiteurs</h3>
+            <p className="text-xs text-[#A1A1AA] font-light">
+              Canaux d'acquisition et conversion sociale.
             </p>
           </div>
 
-          <div className="h-52 w-full flex items-center justify-center">
+          <div className="h-48 w-full flex items-center justify-center">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Pie
@@ -280,9 +281,9 @@ export default function AdminDashboardPage() {
                   nameKey="name"
                   cx="50%"
                   cy="50%"
-                  innerRadius={50}
-                  outerRadius={75}
-                  paddingAngle={4}
+                  innerRadius={46}
+                  outerRadius={72}
+                  paddingAngle={3}
                 >
                   {analytics.trafficSources.map((entry: any, index: number) => (
                     <Cell key={`cell-${index}`} fill={entry.color} />
@@ -290,24 +291,25 @@ export default function AdminDashboardPage() {
                 </Pie>
                 <Tooltip
                   contentStyle={{
-                    backgroundColor: '#181818',
-                    borderColor: '#262626',
-                    borderRadius: '4px',
+                    backgroundColor: '#18181C',
+                    borderColor: 'rgba(197, 168, 128, 0.3)',
+                    borderRadius: '2px',
                     fontSize: '11px',
+                    color: '#FFF',
                   }}
                 />
               </PieChart>
             </ResponsiveContainer>
           </div>
 
-          <div className="space-y-2">
+          <div className="space-y-2.5">
             {analytics.trafficSources.map((source: any) => (
               <div key={source.name} className="flex items-center justify-between text-xs">
                 <div className="flex items-center gap-2">
-                  <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: source.color }} />
-                  <span className="text-[#D4D4D4]">{source.name}</span>
+                  <span className="w-2 h-2 rounded-full" style={{ backgroundColor: source.color }} />
+                  <span className="text-[#D4D4D8]">{source.name}</span>
                 </div>
-                <span className="text-[#A3A3A3] font-mono">{source.value}%</span>
+                <span className="text-[#A1A1AA] font-mono">{source.value}%</span>
               </div>
             ))}
           </div>
@@ -315,30 +317,30 @@ export default function AdminDashboardPage() {
       </div>
 
       {/* Conversion Funnel & Top Creations */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Parcours de Conversion */}
-        <div className="lg:col-span-6 p-6 bg-[#121212] border border-[#222222] rounded-sm space-y-4">
+        <div className="lg:col-span-6 p-6 sm:p-8 bg-[#121216] border border-white/[0.08] space-y-6">
           <div>
-            <h3 className="font-serif-luxe text-xl text-white">
-              Entonnoir de Conversion Visiteur → Client
+            <h3 className="font-serif-luxe text-xl text-white font-normal">
+              Entonnoir de Commande Visiteur → Client
             </h3>
-            <p className="text-xs text-[#737373]">
-              Visualisation des étapes franchies par les visiteurs jusqu'à la commande.
+            <p className="text-xs text-[#A1A1AA] font-light">
+              Taux de progression à chaque palier du catalogue.
             </p>
           </div>
 
-          <div className="space-y-3 pt-2">
+          <div className="space-y-3.5 pt-2">
             {funnelData.map((step, idx) => (
-              <div key={step.name} className="space-y-1">
+              <div key={step.name} className="space-y-1.5">
                 <div className="flex justify-between text-xs">
-                  <span className="text-[#D4D4D4]">{step.name}</span>
-                  <span className="font-mono text-[#C5A880]">{step.count}</span>
+                  <span className="text-[#D4D4D8] tracking-wide">{step.name}</span>
+                  <span className="font-mono text-[#C5A880] font-medium">{step.count}</span>
                 </div>
-                <div className="w-full bg-[#181818] h-2 rounded-full overflow-hidden">
+                <div className="w-full bg-[#18181C] h-1.5 overflow-hidden">
                   <div
                     className="h-full bg-[#C5A880]"
                     style={{
-                      width: `${Math.max(10, Math.min(100, (step.count / (analytics.totalVisitors || 1)) * 100))}%`,
+                      width: `${Math.max(8, Math.min(100, (step.count / (analytics.totalVisitors || 1)) * 100))}%`,
                     }}
                   />
                 </div>
@@ -348,19 +350,19 @@ export default function AdminDashboardPage() {
         </div>
 
         {/* Top Creations Performance */}
-        <div className="lg:col-span-6 p-6 bg-[#121212] border border-[#222222] rounded-sm space-y-4">
+        <div className="lg:col-span-6 p-6 sm:p-8 bg-[#121216] border border-white/[0.08] space-y-6">
           <div className="flex items-center justify-between">
             <div>
-              <h3 className="font-serif-luxe text-xl text-white">
-                Créations les Plus Consultées
+              <h3 className="font-serif-luxe text-xl text-white font-normal">
+                Modèles les Plus Convoités
               </h3>
-              <p className="text-xs text-[#737373]">
-                Les modèles générant le plus fort intérêt et clics WhatsApp.
+              <p className="text-xs text-[#A1A1AA] font-light">
+                Pièces générant le plus de consultations et d'ouvertures WhatsApp.
               </p>
             </div>
             <Link
               href="/admin/creations"
-              className="text-xs text-[#C5A880] hover:text-white uppercase tracking-wider"
+              className="text-xs text-[#C5A880] hover:text-white uppercase tracking-widest font-medium luxury-underline"
             >
               Gérer
             </Link>
@@ -370,21 +372,21 @@ export default function AdminDashboardPage() {
             {analytics.topCreations.map((item: any) => (
               <div
                 key={item.id}
-                className="flex items-center justify-between p-2.5 bg-[#161616] border border-[#222222] rounded-sm text-xs"
+                className="flex items-center justify-between p-3 bg-[#18181C] border border-white/[0.06] text-xs hover:border-[#C5A880]/40 transition-colors"
               >
                 <div className="flex items-center gap-3">
-                  <div className="relative w-10 h-12 rounded-sm overflow-hidden bg-black shrink-0">
+                  <div className="relative w-10 h-12 overflow-hidden bg-black shrink-0 border border-white/10">
                     <Image src={item.images[0]} alt={item.title} fill className="object-cover" />
                   </div>
                   <div>
                     <p className="text-white font-medium line-clamp-1">{item.title}</p>
-                    <p className="text-[#737373] text-[10px] font-mono">{item.ref} · {item.category}</p>
+                    <p className="text-[#71717A] text-[10px] font-mono">{item.ref} · {item.category}</p>
                   </div>
                 </div>
 
                 <div className="text-right">
-                  <p className="text-[#C5A880] font-mono">{item.viewsCount} vues</p>
-                  <p className="text-[#25D366] text-[10px] font-mono">{item.whatsappClicksCount} clics WA</p>
+                  <p className="text-[#C5A880] font-mono font-medium">{item.viewsCount} vues</p>
+                  <p className="text-emerald-400 text-[10px] font-mono">{item.whatsappClicksCount} clics WA</p>
                 </div>
               </div>
             ))}
@@ -392,66 +394,66 @@ export default function AdminDashboardPage() {
         </div>
       </div>
 
-      {/* Mini-CRM Recent Requests Quick Teaser */}
-      <div className="p-6 bg-[#121212] border border-[#222222] rounded-sm space-y-4">
-        <div className="flex items-center justify-between">
+      {/* Mini-CRM Recent Requests Table */}
+      <div className="p-6 sm:p-8 bg-[#121216] border border-white/[0.08] space-y-6">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <h3 className="font-serif-luxe text-xl text-white">Dernières Demandes Reçues (Mini-CRM)</h3>
-            <p className="text-xs text-[#737373]">
-              Interagissez directement avec les clients sur WhatsApp pour concrétiser les commandes.
+            <h3 className="font-serif-luxe text-xl sm:text-2xl text-white font-normal">Dernières Demandes Reçues (Salon Privé)</h3>
+            <p className="text-xs text-[#A1A1AA] font-light">
+              Mises en relation WhatsApp et demandes de sur-mesure à traiter.
             </p>
           </div>
           <Link
             href="/admin/demandes"
-            className="flex items-center gap-1.5 px-4 py-2 bg-[#C5A880] text-black font-semibold text-xs uppercase tracking-wider rounded-sm hover:bg-[#d4af37]"
+            className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#C5A880] text-[#09090B] font-semibold text-xs uppercase tracking-[0.2em] hover:bg-white transition-colors"
           >
-            <span>Voir le CRM complet</span>
+            <span>Ouvrir le CRM Complet</span>
             <ChevronRight className="w-3.5 h-3.5" />
           </Link>
         </div>
 
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
-            <thead className="border-b border-[#262626] text-[#737373] uppercase tracking-wider">
+            <thead className="border-b border-white/[0.08] text-[#71717A] uppercase tracking-wider text-[10px]">
               <tr>
-                <th className="py-3 px-4">Client</th>
+                <th className="py-3 px-4">Client VIP</th>
                 <th className="py-3 px-4">Type</th>
-                <th className="py-3 px-4">Objet / Modèle</th>
-                <th className="py-3 px-4">Statut</th>
-                <th className="py-3 px-4 text-right">Action WhatsApp</th>
+                <th className="py-3 px-4">Objet de la Demande</th>
+                <th className="py-3 px-4">Statut Atelier</th>
+                <th className="py-3 px-4 text-right">Canal WhatsApp</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-[#1C1C1C]">
+            <tbody className="divide-y divide-white/[0.04]">
               {demands.slice(0, 4).map((d) => (
-                <tr key={d.id} className="hover:bg-[#161616]">
+                <tr key={d.id} className="hover:bg-white/[0.02] transition-colors">
                   <td className="py-3.5 px-4">
                     <p className="text-white font-medium">{d.fullName}</p>
-                    <p className="text-[#737373] font-mono text-[10px]">{d.phone}</p>
+                    <p className="text-[#71717A] font-mono text-[10px]">{d.phone}</p>
                   </td>
                   <td className="py-3.5 px-4">
-                    <span className="capitalize px-2 py-0.5 rounded-sm text-[10px] border border-white/10 bg-white/5">
+                    <span className="capitalize px-2 py-0.5 text-[9.5px] border border-white/10 bg-white/5 uppercase tracking-wider">
                       {d.type}
                     </span>
                   </td>
-                  <td className="py-3.5 px-4 text-[#D4D4D4]">
+                  <td className="py-3.5 px-4 text-[#D4D4D8]">
                     {d.outfitType || d.creationTitle || 'Demande générale'}
                   </td>
                   <td className="py-3.5 px-4">
-                    <span className="px-2.5 py-1 rounded-sm text-[10px] border border-[#C5A880]/30 bg-[#C5A880]/10 text-[#C5A880]">
+                    <span className="px-2.5 py-1 text-[10px] border border-[#C5A880]/30 bg-[#C5A880]/10 text-[#C5A880] tracking-wider uppercase font-medium">
                       {d.status}
                     </span>
                   </td>
                   <td className="py-3.5 px-4 text-right">
                     <a
                       href={`https://wa.me/${d.whatsapp.replace(/\+/g, '').replace(/\s+/g, '')}?text=${encodeURIComponent(
-                        `Bonjour ${d.fullName}, je fais suite à votre demande sur le site YANLAMODE Haute Couture.`
+                        `Bonjour ${d.fullName}, je suis le couturier Yanlamode. Je fais suite à votre demande sur notre site officiel.`
                       )}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#25D366] text-black font-semibold rounded-sm text-[10px] uppercase tracking-wider"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#09090B] hover:bg-[#C5A880] text-[#C5A880] hover:text-[#09090B] border border-[#C5A880]/50 hover:border-[#C5A880] font-semibold text-[10px] uppercase tracking-wider transition-all"
                     >
-                      <MessageCircle className="w-3 h-3 fill-current" />
-                      <span>Ouvrir WhatsApp</span>
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#C5A880]" />
+                      <span>Échanger</span>
                     </a>
                   </td>
                 </tr>
