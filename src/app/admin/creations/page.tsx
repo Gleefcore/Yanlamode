@@ -50,7 +50,7 @@ export default function AdminCreationsPage() {
 
   async function fetchCreations() {
     try {
-      const res = await fetch('/api/creations');
+      const res = await fetch('/api/creations', { cache: 'no-store' });
       const data = await res.json();
       setCreations(Array.isArray(data) ? data : []);
     } catch (e) {

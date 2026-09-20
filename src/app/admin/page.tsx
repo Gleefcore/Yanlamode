@@ -29,8 +29,8 @@ export default function AdminDashboardPage() {
     setLoading(true);
     try {
       const [resDemands, resCreations] = await Promise.all([
-        fetch('/api/demandes'),
-        fetch('/api/creations'),
+        fetch('/api/demandes', { cache: 'no-store' }),
+        fetch('/api/creations', { cache: 'no-store' }),
       ]);
       const dataDemands = await resDemands.json();
       const dataCreations = await resCreations.json();

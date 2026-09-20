@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
 import { cookies } from 'next/headers';
 
+export const dynamic = 'force-dynamic';
+
 function checkAdmin() {
   const token = cookies().get('yanlamode_admin_token');
   return Boolean(token && token.value.startsWith('authenticated_token_'));
