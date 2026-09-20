@@ -26,8 +26,8 @@ export default function AdminAnalyticsPage() {
     async function load() {
       try {
         const [resAna, resDemands] = await Promise.all([
-          fetch(`/api/analytics?period=${period}`),
-          fetch('/api/demandes')
+          fetch(`/api/analytics?period=${period}`, { cache: 'no-store' }),
+          fetch('/api/demandes', { cache: 'no-store' })
         ]);
         const dataAna = await resAna.json();
         const dataDemands = await resDemands.json();
