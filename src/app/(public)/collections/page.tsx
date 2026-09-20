@@ -106,9 +106,19 @@ export default function CollectionsPage() {
                     {col.description}
                   </p>
 
-                  <div className="pt-2 flex items-center gap-2 text-[11px] uppercase tracking-[0.22em] text-[#C5A880] font-medium">
-                    <span>{isSelected ? 'Sélection active · Modèles affichés ci-dessous' : 'Explorer les silhouettes de la collection'}</span>
-                    <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-1.5 transition-transform" />
+                  <div className="pt-2 flex flex-col gap-3">
+                    <div className="flex items-center gap-2 text-[11px] uppercase tracking-[0.22em] text-[#C5A880] font-medium">
+                      <span>{isSelected ? 'Sélection active · Modèles affichés ci-dessous' : 'Explorer les silhouettes de la collection'}</span>
+                      <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-1.5 transition-transform" />
+                    </div>
+                    
+                    <Link
+                      href="/commander"
+                      onClick={(e) => e.stopPropagation()}
+                      className="inline-flex items-center justify-center gap-2 w-max px-6 py-2 bg-white text-black font-semibold text-[10px] uppercase tracking-[0.2em] rounded-sm hover:bg-[#C5A880] hover:text-white transition-colors shadow-sm"
+                    >
+                      <span>Commander</span>
+                    </Link>
                   </div>
                 </div>
               </div>

@@ -42,8 +42,8 @@ const config: Config = {
         },
       },
       fontFamily: {
-        serif: ["var(--font-serif)", "Cormorant Garamond", "Didot", "Bodoni MT", "Georgia", "serif"],
-        sans: ["var(--font-sans)", "Plus Jakarta Sans", "system-ui", "sans-serif"],
+        serif: ["var(--font-playfair)", "Cormorant Garamond", "Didot", "Bodoni MT", "Georgia", "serif"],
+        sans: ["var(--font-montserrat)", "Plus Jakarta Sans", "system-ui", "sans-serif"],
       },
       letterSpacing: {
         widest: ".25em",

@@ -36,300 +36,9 @@ const INITIAL_SETTINGS: SiteSettings = {
   },
 };
 
-const INITIAL_COLLECTIONS: Collection[] = [
-  {
-    id: "col-haute-couture",
-    title: "Haute Couture",
-    slug: "haute-couture",
-    description: "Créations d'exception pensées dans les moindres détails pour sublimer la silhouette avec une audace raffinée.",
-    coverImage: "/images/creations/robe-batik-franges.jpg",
-    season: "Édition Permanente",
-    featured: true,
-    creationsCount: 4,
-  },
-  {
-    id: "col-ceremonie",
-    title: "Cérémonie & Soirée",
-    slug: "ceremonie",
-    description: "Des silhouettes magistrales pensées pour les moments inoubliables. Smokings impeccables et tenues d'apparat.",
-    coverImage: "/images/creations/smoking-noir-prestige.jpg",
-    season: "Collection Prestige",
-    featured: true,
-    creationsCount: 4,
-  },
-  {
-    id: "col-tradition-chic",
-    title: "Héritage & Tradition Chic",
-    slug: "tradition-chic",
-    description: "L'art du textile d'Afrique magnifié par la précision et la rigueur de la haute couture moderne.",
-    coverImage: "/images/creations/agbada-noir-diamant.jpg",
-    season: "Collection Signature",
-    featured: true,
-    creationsCount: 3,
-  },
-  {
-    id: "col-sur-mesure",
-    title: "Sur Mesure Exclusif",
-    slug: "sur-mesure",
-    description: "Une pièce unique imaginée selon vos envies, votre morphologie exacte et vos événements les plus précieux.",
-    coverImage: "/images/creations/costume-croise-rose.jpg",
-    season: "Atelier Privé",
-    featured: true,
-    creationsCount: 10,
-  },
-];
-
-const INITIAL_CREATIONS: Creation[] = [
-  {
-    id: "crea-01",
-    title: "Costume Croisé Rose Poudré & Boutons d'Or",
-    slug: "costume-croise-rose-poudre-et-or",
-    ref: "YM-HC-001",
-    collectionId: "col-ceremonie",
-    category: "Costume & Smoking",
-    gender: "Homme",
-    description: "Veste croisée masculine ajustée dans une teinte rose poudré subtile et moderne, rehaussée de boutons dorés brossés et d'une pochette en soie à motifs géométriques.",
-    fabric: "Drap de laine froide superfine 150s & doublure satin de soie",
-    colors: ["Rose Poudré", "Boutons Or", "Blanc Soie"],
-    status: "Disponible sur commande",
-    images: ["/images/creations/costume-croise-rose.jpg"],
-    featured: true,
-    viewsCount: 342,
-    whatsappClicksCount: 48,
-    createdAt: "2026-08-01",
-  },
-  {
-    id: "crea-02",
-    title: "Smoking Vert Sauge Col Châle Arrondi",
-    slug: "smoking-vert-sauge-col-chale",
-    ref: "YM-HC-002",
-    collectionId: "col-ceremonie",
-    category: "Costume & Smoking",
-    gender: "Homme",
-    description: "Smoking couture à col châle généreux et arrondi dans une nuance vert sauge contemporaine. Boutons recouverts de tissu ton sur ton et fentes discrètes.",
-    fabric: "Laine italienne peignée & revers satin mat",
-    colors: ["Vert Sauge", "Noir Satin"],
-    status: "Création sur mesure",
-    images: ["/images/creations/smoking-vert-sauge.jpg"],
-    featured: true,
-    viewsCount: 289,
-    whatsappClicksCount: 39,
-    createdAt: "2026-08-05",
-  },
-  {
-    id: "crea-03",
-    title: "Agbada Haute Couture Noir Relief Diamant",
-    slug: "agbada-haute-couture-noir-relief",
-    ref: "YM-HC-003",
-    collectionId: "col-tradition-chic",
-    category: "Traditionnel Chic",
-    gender: "Homme",
-    description: "Ensemble d'apparat masculin composé d'un agbada à structure matelassée en losanges géométriques, pantalon tailleur assorti et coiffe traditionnelle.",
-    fabric: "Coton damassé texturé lourd & finitions au fil de soie",
-    colors: ["Noir Profond"],
-    status: "Disponible sur commande",
-    images: ["/images/creations/agbada-noir-diamant.jpg"],
-    featured: true,
-    viewsCount: 520,
-    whatsappClicksCount: 76,
-    createdAt: "2026-08-10",
-  },
-  {
-    id: "crea-04",
-    title: "Smoking Croisé Noir Prestige & Revers Satin",
-    slug: "smoking-croise-noir-prestige",
-    ref: "YM-HC-004",
-    collectionId: "col-ceremonie",
-    category: "Costume & Smoking",
-    gender: "Homme",
-    description: "Le summum de l'élégance formelle. Veste croisée noire au tombé sculptural, revers en satin de soie noir brillant et nœud papillon en velours.",
-    fabric: "Laine noble mérinos & satin de soie duchesse",
-    colors: ["Noir Intense", "Blanc Pur"],
-    status: "Disponible sur commande",
-    images: ["/images/creations/smoking-noir-prestige.jpg"],
-    featured: true,
-    viewsCount: 461,
-    whatsappClicksCount: 63,
-    createdAt: "2026-08-14",
-  },
-  {
-    id: "crea-05",
-    title: "Ensemble Épure Blanc Brodé Volière & Oiseaux",
-    slug: "ensemble-epure-blanc-brode-voliere",
-    ref: "YM-HC-005",
-    collectionId: "col-haute-couture",
-    category: "Haute Couture",
-    gender: "Homme",
-    description: "Tunique oversize à manches courtes en lin immaculé ornée d'une broderie d'art figurant une cage et des oiseaux prenant leur envol, avec pantalon à pinces fluide.",
-    fabric: "Lin lourd premium & broderie d'art au point de croix",
-    colors: ["Blanc Craie", "Noir de Chine"],
-    status: "Disponible sur commande",
-    images: ["/images/creations/ensemble-blanc-oiseau.jpg"],
-    featured: true,
-    viewsCount: 395,
-    whatsappClicksCount: 52,
-    createdAt: "2026-08-18",
-  },
-  {
-    id: "crea-06",
-    title: "Gilet d'Apparat Croisé & Coiffe Royale",
-    slug: "gilet-apparat-croise-blanc-coiffe",
-    ref: "YM-HC-006",
-    collectionId: "col-ceremonie",
-    category: "Cérémonie",
-    gender: "Homme",
-    description: "Gilet long sans manches croisé blanc immaculé sur chemise rayée à manchettes montantes, complété d'une coiffe royale en velours rouge brodée d'or.",
-    fabric: "Crêpe de laine blanc nacré & velours de soie pourpre",
-    colors: ["Blanc Éclatant", "Bleu Rayé", "Rouge Impérial"],
-    status: "Création sur mesure",
-    images: ["/images/creations/costume-ceremonie-blanc-rouge.jpg"],
-    featured: true,
-    viewsCount: 310,
-    whatsappClicksCount: 41,
-    createdAt: "2026-08-22",
-  },
-  {
-    id: "crea-07",
-    title: "Robe Tunique Batik Indigo & Plastron Tissé",
-    slug: "robe-tunique-batik-indigo-plastron-tisse",
-    ref: "YM-HC-007",
-    collectionId: "col-haute-couture",
-    category: "Haute Couture",
-    gender: "Femme",
-    description: "Création spectaculaire mêlant batik contemporain à motifs marbrés verticaux et plastron artisanal tissé main à rayures et franges vibrantes.",
-    fabric: "Batik artisanal coton peigné & tissage traditionnel Baoulé",
-    colors: ["Indigo Nuit", "Écru Naturel", "Rouge Terre"],
-    status: "Disponible sur commande",
-    images: ["/images/creations/robe-batik-franges.jpg"],
-    featured: true,
-    viewsCount: 488,
-    whatsappClicksCount: 67,
-    createdAt: "2026-08-25",
-  },
-  {
-    id: "crea-08",
-    title: "Tunique Haute Couture Dentelle Suisse Ajourée",
-    slug: "tunique-dentelle-suisse-ajouree",
-    ref: "YM-HC-008",
-    collectionId: "col-tradition-chic",
-    category: "Traditionnel Chic",
-    gender: "Homme",
-    description: "Tunique masculine prestigieuse en dentelle suisse perforée à motifs géométriques et œillets d'art, boutonnage discret à col officier.",
-    fabric: "Véritable dentelle suisse de coton brodé ajouré",
-    colors: ["Blanc Pur"],
-    status: "Disponible sur commande",
-    images: ["/images/creations/tunique-dentelle-suisse.jpg"],
-    featured: false,
-    viewsCount: 275,
-    whatsappClicksCount: 33,
-    createdAt: "2026-08-28",
-  },
-  {
-    id: "crea-09",
-    title: "Robe Maxi Batik Majesté & Plastron Cuivré",
-    slug: "robe-maxi-batik-majeste-plastron-cuivre",
-    ref: "YM-HC-009",
-    collectionId: "col-haute-couture",
-    category: "Haute Couture",
-    gender: "Femme",
-    description: "Robe longue architecturale avec découpes en wax batik indigo et écru, plastron asymétrique cuivré métallisé et coiffe assortie.",
-    fabric: "Batik authentique teinté à la cuve & soie mordorée",
-    colors: ["Bleu Nuit", "Bronze Cuivre", "Blanc Craie"],
-    status: "Création sur mesure",
-    images: ["/images/creations/robe-maxi-batik-bronze.jpg"],
-    featured: true,
-    viewsCount: 390,
-    whatsappClicksCount: 54,
-    createdAt: "2026-09-02",
-  },
-  {
-    id: "crea-10",
-    title: "Robe Éditoriale Batik Géométrique & Voile Violet",
-    slug: "robe-editoriale-batik-violet",
-    ref: "YM-HC-010",
-    collectionId: "col-haute-couture",
-    category: "Haute Couture",
-    gender: "Femme",
-    description: "Robe kimono fluide associant motifs floraux géométriques indigo, col officier graphique et ourlet inférieur teinté en violet pourpre.",
-    fabric: "Coton batik bicolore et soie satinée violette",
-    colors: ["Indigo", "Violet Pourpre", "Lavande"],
-    status: "Disponible sur commande",
-    images: ["/images/creations/robe-tunique-violet-indigo.jpg"],
-    featured: false,
-    viewsCount: 330,
-    whatsappClicksCount: 42,
-    createdAt: "2026-09-05",
-  },
-];
-
-const INITIAL_DEMANDS: Demand[] = [
-  {
-    id: "dem-001",
-    type: "sur-mesure",
-    fullName: "Alexandre Koffi",
-    phone: "+237 6 97 25 14 25",
-    whatsapp: "+237 6 97 25 14 25",
-    email: "alex.koffi@example.com",
-    gender: "Homme",
-    outfitType: "Smoking de Gala sur mesure",
-    occasion: "Cérémonie de Mariage",
-    eventDate: "2026-10-25",
-    budget: "450 000 - 650 000 FCFA",
-    measurements: {
-      chest: "102 cm",
-      waist: "86 cm",
-      shoulder: "48 cm",
-      height: "185 cm",
-    },
-    description: "Je recherche un smoking dans l'esprit du Vert Sauge mais en bleu nuit profond avec revers satin noir et pochette personnalisée.",
-    status: "En discussion",
-    notes: "Premier contact très favorable. Échange WhatsApp en cours pour convenir de la date de prise de mesures.",
-    createdAt: "2026-09-15T14:30:00Z",
-  },
-  {
-    id: "dem-002",
-    type: "creation",
-    fullName: "Béatrice Touré",
-    phone: "+33 6 12 34 56 78",
-    whatsapp: "+33 6 12 34 56 78",
-    email: "beatrice.toure@example.com",
-    creationId: "crea-07",
-    creationTitle: "Robe Tunique Batik Indigo & Plastron Tissé",
-    description: "Bonjour, je souhaite commander cette robe pour une réception officielle à Paris fin octobre. Est-il possible d'ajuster la longueur ?",
-    status: "Nouveau",
-    notes: "Demande reçue directement depuis la fiche création. Relancer sur WhatsApp.",
-    createdAt: "2026-09-17T09:15:00Z",
-  },
-  {
-    id: "dem-003",
-    type: "sur-mesure",
-    fullName: "Emmanuel Mbarga",
-    phone: "+237 6 97 25 14 25",
-    whatsapp: "+237 6 97 25 14 25",
-    gender: "Homme",
-    outfitType: "Agbada 3 pièces Cérémonie",
-    occasion: "Dot traditionnelle",
-    eventDate: "2026-11-12",
-    budget: "300 000 - 400 000 FCFA",
-    description: "Agbada noir chic avec broderie fine dorée sur le col.",
-    status: "Devis / Proposition",
-    notes: "Devis envoyé sur WhatsApp (350 000 FCFA avec tissu importé). En attente d'acompte.",
-    createdAt: "2026-09-12T16:00:00Z",
-  },
-  {
-    id: "dem-004",
-    type: "creation",
-    fullName: "Marc D'Almeida",
-    phone: "+237 6 70 11 22 33",
-    whatsapp: "+237 6 70 11 22 33",
-    creationId: "crea-01",
-    creationTitle: "Costume Croisé Rose Poudré & Boutons d'Or",
-    status: "Confirmé",
-    notes: "Acompte versé, essayage prévu le 22 septembre.",
-    description: "Commande confirmée pour remise de prix.",
-    createdAt: "2026-09-10T11:00:00Z",
-  },
-];
+const INITIAL_COLLECTIONS: Collection[] = [];
+const INITIAL_CREATIONS: Creation[] = [];
+const INITIAL_DEMANDS: Demand[] = [];
 
 // Gestionnaire de persistance en mémoire / local avec connecteur Supabase bidirectionnel
 class DatabaseService {
@@ -487,6 +196,75 @@ class DatabaseService {
     return this.collections;
   }
 
+  async addCollection(collection: Omit<Collection, 'id' | 'creationsCount'>): Promise<Collection> {
+    const newCollection: Collection = {
+      ...collection,
+      id: `col-${Date.now()}`,
+      creationsCount: 0,
+    };
+
+    if (isSupabaseConfigured && (supabaseAdmin || supabase)) {
+      try {
+        const client = supabaseAdmin || supabase!;
+        await client.from('collections').insert([{
+          id: newCollection.id,
+          title: newCollection.title,
+          slug: newCollection.slug,
+          description: newCollection.description,
+          cover_image: newCollection.coverImage,
+          season: newCollection.season,
+          featured: newCollection.featured,
+          creations_count: 0,
+        }]);
+      } catch (e) {
+        console.warn('Supabase collection insert failed', e);
+      }
+    }
+
+    this.collections.push(newCollection);
+    return newCollection;
+  }
+
+  async updateCollection(id: string, updates: Partial<Collection>): Promise<Collection | null> {
+    const index = this.collections.findIndex(c => c.id === id);
+    if (index === -1) return null;
+
+    const updated = { ...this.collections[index], ...updates };
+    this.collections[index] = updated;
+
+    if (isSupabaseConfigured && (supabaseAdmin || supabase)) {
+      try {
+        const client = supabaseAdmin || supabase!;
+        const mappedUpdates: any = { ...updates };
+        if (updates.coverImage !== undefined) {
+          mappedUpdates.cover_image = updates.coverImage;
+          delete mappedUpdates.coverImage;
+        }
+        await client.from('collections').update(mappedUpdates).eq('id', id);
+      } catch (e) {
+        console.warn('Supabase collection update failed', e);
+      }
+    }
+
+    return updated;
+  }
+
+  async deleteCollection(id: string): Promise<boolean> {
+    const initialLen = this.collections.length;
+    this.collections = this.collections.filter(c => c.id !== id);
+
+    if (isSupabaseConfigured && (supabaseAdmin || supabase)) {
+      try {
+        const client = supabaseAdmin || supabase!;
+        await client.from('collections').delete().eq('id', id);
+      } catch (e) {
+        console.warn('Supabase collection delete failed', e);
+      }
+    }
+
+    return this.collections.length < initialLen;
+  }
+
   // ==================== DEMANDES / MINI CRM ====================
   async getDemands(): Promise<Demand[]> {
     if (isSupabaseConfigured && (supabaseAdmin || supabase)) {
@@ -613,7 +391,7 @@ class DatabaseService {
   }
 
   async getAnalyticsSummary(period: 'today' | '7d' | '30d' | '3m' | '12m' = '7d') {
-    // Calcul de base basé sur les données réelles et historiques
+    // Calcul basé uniquement sur les vraies données de commandes et créations
     const creations = await this.getCreations();
     const demands = await this.getDemands();
 
@@ -621,46 +399,34 @@ class DatabaseService {
     const totalWhatsAppClicks = creations.reduce((acc, c) => acc + c.whatsappClicksCount, 0);
     const totalDemands = demands.length;
     const bespokeDemands = demands.filter(d => d.type === 'sur-mesure').length;
+    const formationDemands = demands.filter(d => d.type === 'formation').length;
 
-    // Données temporelles pour les graphiques
-    const dailyVisits = [
-      { day: 'Lun', visitors: 145, views: 320, whatsapp: 18 },
-      { day: 'Mar', visitors: 198, views: 430, whatsapp: 24 },
-      { day: 'Mer', visitors: 260, views: 580, whatsapp: 38 },
-      { day: 'Jeu', visitors: 215, views: 490, whatsapp: 29 },
-      { day: 'Ven', visitors: 340, views: 760, whatsapp: 47 },
-      { day: 'Sam', visitors: 420, views: 910, whatsapp: 58 },
-      { day: 'Dim', visitors: 380, views: 820, whatsapp: 51 },
-    ];
+    // Répartition par Statut (pour graphique)
+    const statuses: Record<string, number> = {};
+    demands.forEach(d => {
+      statuses[d.status] = (statuses[d.status] || 0) + 1;
+    });
+    const demandsByStatus = Object.entries(statuses).map(([name, value]) => ({ name, value }));
 
-    // Répartition des sources de trafic
-    const trafficSources = [
-      { name: 'Instagram', value: 45, color: '#E1306C' },
-      { name: 'TikTok', value: 25, color: '#00F2FE' },
-      { name: 'WhatsApp Direct', value: 15, color: '#25D366' },
-      { name: 'Google SEO', value: 10, color: '#4285F4' },
-      { name: 'Facebook', value: 5, color: '#1877F2' },
-    ];
-
-    // Répartition des appareils
-    const devices = [
-      { name: 'Mobile', percent: 82 },
-      { name: 'Desktop', percent: 14 },
-      { name: 'Tablette', percent: 4 },
-    ];
+    // Évolution des commandes (basé sur createdAt)
+    // Pour simplifier, on prend les dates réelles
+    const dateCounts: Record<string, number> = {};
+    demands.forEach(d => {
+      const date = new Date(d.createdAt).toLocaleDateString('fr-FR', { day: '2-digit', month: 'short' });
+      dateCounts[date] = (dateCounts[date] || 0) + 1;
+    });
+    const orderEvolution = Object.entries(dateCounts).map(([date, count]) => ({ date, count }));
 
     return {
-      totalVisitors: Math.round(totalViews * 0.65),
       totalViews,
-      creationsViewed: totalViews,
       totalWhatsAppClicks,
       totalDemands,
       bespokeDemands,
-      conversionRate: ((totalWhatsAppClicks / (totalViews || 1)) * 100).toFixed(1),
-      dailyVisits,
-      trafficSources,
-      devices,
-      topCreations: creations.slice(0, 5),
+      formationDemands,
+      conversionRate: totalViews > 0 ? ((totalWhatsAppClicks / totalViews) * 100).toFixed(1) : '0.0',
+      demandsByStatus,
+      orderEvolution,
+      topCreations: creations.sort((a, b) => b.whatsappClicksCount - a.whatsappClicksCount).slice(0, 5),
     };
   }
 
