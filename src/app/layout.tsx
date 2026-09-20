@@ -14,30 +14,36 @@ const montserrat = Montserrat({
   display: 'swap',
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL('https://yanlamode.com'),
-  title: "YANLAMODE HAUTE COUTURE | L'élégance façonnée sur mesure",
-  description: "Maison de haute couture et création sur mesure. 11 années de savoir-faire d'exception au service de créations uniques pour hommes et femmes.",
-  keywords: [
-    "haute couture",
-    "couturier sur mesure",
-    "couture homme",
-    "couture femme",
-    "smoking sur mesure",
-    "tenue de cérémonie",
-    "mode africaine",
-    "YANLAMODE Haute Couture"
-  ],
-  openGraph: {
-    title: "YANLAMODE HAUTE COUTURE | L'élégance façonnée sur mesure",
-    description: "11 années de savoir-faire au service de créations uniques. Smokings, tenues de cérémonie et pièces sur mesure.",
-    images: ['/images/brand/logo.jpg'],
-    type: 'website',
-  },
-  icons: {
-    icon: '/images/brand/logo.jpg',
-  },
-};
+import { db } from '@/lib/db';
+
+export async function generateMetadata(): Promise<Metadata> {
+  const settings = await db.getSettings();
+  
+  return {
+    metadataBase: new URL('https://yanlamode.vercel.app'),
+    title: settings.seo?.metaTitle || `${settings.brandName} | ${settings.tagline}`,
+    description: settings.seo?.metaDescription || settings.secondaryTagline,
+    keywords: settings.seo?.keywords || [
+      "haute couture",
+      "couturier sur mesure",
+      "couture homme",
+      "couture femme",
+      "smoking sur mesure",
+      "tenue de cérémonie",
+      "mode africaine",
+      settings.brandName
+    ],
+    openGraph: {
+      title: settings.seo?.metaTitle || `${settings.brandName} | ${settings.tagline}`,
+      description: settings.seo?.metaDescription || settings.secondaryTagline,
+      images: ['/images/brand/logo.jpg'],
+      type: 'website',
+    },
+    icons: {
+      icon: '/images/brand/logo.jpg',
+    },
+  };
+}
 
 export default function RootLayout({
   children,
